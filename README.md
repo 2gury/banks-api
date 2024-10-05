@@ -1,1 +1,1 @@
-# banki-api
+# banks-api
