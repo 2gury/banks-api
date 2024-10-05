@@ -1,0 +1,20 @@
+syntax = 'proto3';
+
+package worker;
+
+option go_package = "banks-api/pkg/banks";
+
+import "google/api/annotations.proto";
+
+service Banks {
+  rpc GetBanks(GetBanksRequest) returns (GetBanksResponse) {
+    option (google.api.http) = {
+      post: "/v1/banks/get"
+      body: "*"
+    };
+  };
+}
+
+message GetBanksRequest {}
+
+message GetBanksResponse {}

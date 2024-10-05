@@ -1,0 +1,6 @@
+/.idea
+/bin
+/vendor-proto
+/data
+.DS_Store
+pgdata

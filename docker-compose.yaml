@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  banks-db:
+    image: postgres:15.1
+    environment:
+      POSTGRES_DB: banks
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      PGPORT: 5432
+    container_name: 'banks-postgres-container'
+    ports:
+      - '5432:5432'
+    volumes:
+      - .:/var/lib/postgresql/data/banks
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d banks" ]
+      interval: 1s
+      timeout: 5s
+      retries: 5
+
