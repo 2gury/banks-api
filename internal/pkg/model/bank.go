@@ -68,3 +68,22 @@ func ConvertBankToModel(bank schema.Bank) (*Bank, error) {
 		UpdatedAt:        bank.UpdatedAt,
 	}, nil
 }
+
+func ConvertBankToSchema(bank *Bank) (*schema.Bank, error) {
+	rawDataBank, err := json.Marshal(bank.BankData)
+	if err != nil {
+		return nil, err
+	}
+
+	return &schema.Bank{
+		ID:               bank.ID,
+		ExternalID:       bank.ExternalID,
+		ExternalLegacyID: bank.ExternalLegacyID,
+		Name:             bank.Name,
+		Logo:             bank.Logo,
+		URL:              bank.URL,
+		BankData:         string(rawDataBank),
+		CreatedAt:        bank.CreatedAt,
+		UpdatedAt:        bank.UpdatedAt,
+	}, nil
+}

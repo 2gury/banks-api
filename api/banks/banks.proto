@@ -5,6 +5,7 @@ package worker;
 option go_package = "banks-api/pkg/banks";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 service Banks {
   rpc GetBanks(GetBanksRequest) returns (GetBanksResponse) {
@@ -13,6 +14,36 @@ service Banks {
       body: "*"
     };
   };
+
+  rpc UpdateBank(UpdateBankRequest) returns (UpdateBankResponse) {
+    option (google.api.http) = {
+      post: "/v1/banks/update"
+      body: "*"
+    };
+  };
+}
+
+message Bank {
+  int64 id = 1 [json_name = "id"];
+  int64 external_id = 2 [json_name = "external_id"];
+  int64 external_legacy_id = 3 [json_name = "external_legacy_id"];
+  string name = 4 [json_name = "name"];
+  string logo = 5 [json_name = "logo"];
+  string url = 6 [json_name = "url"];
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+
+  int64 period_from = 9 [json_name = "period_from"];
+  int64 period_to = 10 [json_name = "period_to"];
+  int64 amount_from = 11 [json_name = "amount_from"];
+  int64 amount_to = 12 [json_name = "amount_to"];
+  double rate_from = 13 [json_name = "rate_from"];
+  double rate_to = 14 [json_name = "rate_to"];
+  int64 review_time = 15 [json_name = "review_time"];
+  repeated string registration = 16 [json_name = "registration"];
+  repeated string credit_purpose = 17 [json_name = "credit_purpose"];
+  repeated string documents = 18 [json_name = "documents"];
+  repeated string obtain_method = 19 [json_name = "obtain_method"];
 }
 
 message GetBanksRequest {
@@ -24,22 +55,8 @@ message GetBanksResponse {
   repeated Bank banks = 1 [json_name = "banks"];
 }
 
-message Bank {
-  int64 id = 1  [json_name = "id"];
-  string name = 2  [json_name = "name"];
-  string logo = 3  [json_name = "logo"];
-  string url = 4  [json_name = "url"];
-
-  int64 period_from = 5  [json_name = "period_from"];
-  int64 period_to = 6  [json_name = "period_to"];
-  int64 amount_from = 7  [json_name = "amount_from"];
-  int64 amount_to = 8  [json_name = "amount_to"];
-  double rate_from = 9  [json_name = "rate_from"];
-  double rate_to = 10  [json_name = "rate_to"];
-  int64 review_time = 11  [json_name = "review_time"];
-
-  repeated string registration = 12  [json_name = "registration"];
-  repeated string credit_purpose = 13  [json_name = "credit_purpose"];
-  repeated string documents = 14  [json_name = "documents"];
-  repeated string obtain_method = 15  [json_name = "obtain_method"];
+message UpdateBankRequest {
+  Bank bank = 1 [json_name = "bank"];
 }
+
+message UpdateBankResponse {}
