@@ -15,6 +15,31 @@ service Banks {
   };
 }
 
-message GetBanksRequest {}
+message GetBanksRequest {
+  uint64 limit = 1 [json_name = "limit"];
+  uint64 offset = 2 [json_name = "offset"];
+}
 
-message GetBanksResponse {}
+message GetBanksResponse {
+  repeated Bank banks = 1 [json_name = "banks"];
+}
+
+message Bank {
+  int64 id = 1  [json_name = "id"];
+  string name = 2  [json_name = "name"];
+  string logo = 3  [json_name = "logo"];
+  string url = 4  [json_name = "url"];
+
+  int64 period_from = 5  [json_name = "period_from"];
+  int64 period_to = 6  [json_name = "period_to"];
+  int64 amount_from = 7  [json_name = "amount_from"];
+  int64 amount_to = 8  [json_name = "amount_to"];
+  double rate_from = 9  [json_name = "rate_from"];
+  double rate_to = 10  [json_name = "rate_to"];
+  int64 review_time = 11  [json_name = "review_time"];
+
+  repeated string registration = 12  [json_name = "registration"];
+  repeated string credit_purpose = 13  [json_name = "credit_purpose"];
+  repeated string documents = 14  [json_name = "documents"];
+  repeated string obtain_method = 15  [json_name = "obtain_method"];
+}

@@ -8,7 +8,7 @@ import (
 )
 
 type BanksService interface {
-	GetBanks(ctx context.Context) ([]*model.Bank, error)
+	GetBanks(ctx context.Context, filters *model.BankFilters) ([]*model.Bank, error)
 }
 
 type BanksHandler struct {
