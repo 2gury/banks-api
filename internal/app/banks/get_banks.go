@@ -6,6 +6,8 @@ import (
 	"banks-api/internal/app/banks/mappers"
 	"banks-api/internal/pkg/model"
 	pbbanks "banks-api/pkg/banks"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func (w *BanksHandler) GetBanks(ctx context.Context, req *pbbanks.GetBanksRequest) (*pbbanks.GetBanksResponse, error) {
@@ -14,7 +16,7 @@ func (w *BanksHandler) GetBanks(ctx context.Context, req *pbbanks.GetBanksReques
 		Offset: req.Offset,
 	})
 	if err != nil {
-		return nil, err
+		return nil, status.Error(codes.Internal, err.Error())
 	}
 
 	return &pbbanks.GetBanksResponse{

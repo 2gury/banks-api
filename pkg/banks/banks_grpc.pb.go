@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Banks_GetBanks_FullMethodName = "/worker.Banks/GetBanks"
+	Banks_GetBanks_FullMethodName   = "/worker.Banks/GetBanks"
+	Banks_UpdateBank_FullMethodName = "/worker.Banks/UpdateBank"
 )
 
 // BanksClient is the client API for Banks service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BanksClient interface {
 	GetBanks(ctx context.Context, in *GetBanksRequest, opts ...grpc.CallOption) (*GetBanksResponse, error)
+	UpdateBank(ctx context.Context, in *UpdateBankRequest, opts ...grpc.CallOption) (*UpdateBankResponse, error)
 }
 
 type banksClient struct {
@@ -47,11 +49,22 @@ func (c *banksClient) GetBanks(ctx context.Context, in *GetBanksRequest, opts ..
 	return out, nil
 }
 
+func (c *banksClient) UpdateBank(ctx context.Context, in *UpdateBankRequest, opts ...grpc.CallOption) (*UpdateBankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateBankResponse)
+	err := c.cc.Invoke(ctx, Banks_UpdateBank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BanksServer is the server API for Banks service.
 // All implementations must embed UnimplementedBanksServer
 // for forward compatibility.
 type BanksServer interface {
 	GetBanks(context.Context, *GetBanksRequest) (*GetBanksResponse, error)
+	UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error)
 	mustEmbedUnimplementedBanksServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedBanksServer struct{}
 
 func (UnimplementedBanksServer) GetBanks(context.Context, *GetBanksRequest) (*GetBanksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBanks not implemented")
+}
+func (UnimplementedBanksServer) UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBank not implemented")
 }
 func (UnimplementedBanksServer) mustEmbedUnimplementedBanksServer() {}
 func (UnimplementedBanksServer) testEmbeddedByValue()               {}
@@ -104,6 +120,24 @@ func _Banks_GetBanks_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Banks_UpdateBank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).UpdateBank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_UpdateBank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).UpdateBank(ctx, req.(*UpdateBankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Banks_ServiceDesc is the grpc.ServiceDesc for Banks service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Banks_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBanks",
 			Handler:    _Banks_GetBanks_Handler,
+		},
+		{
+			MethodName: "UpdateBank",
+			Handler:    _Banks_UpdateBank_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

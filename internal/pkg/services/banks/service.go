@@ -9,6 +9,7 @@ import (
 
 type BanksRepository interface {
 	GetBanks(ctx context.Context, filters *model.BankFilters) ([]schema.Bank, error)
+	UpdateBank(ctx context.Context, bank *model.Bank) error
 }
 
 type BanksHandler struct {
