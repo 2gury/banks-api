@@ -13,3 +13,13 @@ const (
 	bankCreatedAtColumn        = "created_at"
 	bankUpdatedAtColumn        = "updated_at"
 )
+
+const (
+	translationsTableName = "translations"
+
+	translationIDColumn               = "id"
+	translationLexemeColumn           = "lexeme"
+	translationTranslatedLexemeColumn = "translated_lexeme"
+	translationSourceLanguageColumn   = "source_language"
+	translationTargetLanguageColumn   = "target_language"
+)

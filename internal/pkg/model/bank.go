@@ -33,6 +33,7 @@ type BankData struct {
 	Documents     []string `json:"documents"`
 	ReviewTime    int64    `json:"review_time"`
 	ObtainMethod  []string `json:"obtain_method"`
+	Description   string   `json:"description"`
 }
 
 func ConvertBanksToModel(banks []schema.Bank) ([]*Bank, error) {
@@ -86,4 +87,21 @@ func ConvertBankToSchema(bank *Bank) (*schema.Bank, error) {
 		CreatedAt:        bank.CreatedAt,
 		UpdatedAt:        bank.UpdatedAt,
 	}, nil
+}
+
+type BankChatGPTInfo struct {
+	CompanyName   string   `json:"company_name"`
+	CompanyLogo   string   `json:"company_logo"`
+	PeriodFrom    int      `json:"period_from"`
+	PeriodTo      int      `json:"period_to"`
+	AmountFrom    int      `json:"amount_from"`
+	AmountTo      int      `json:"amount_to"`
+	RateFrom      float64  `json:"rate_from"`
+	RateTo        float64  `json:"rate_to"`
+	Registration  []string `json:"registration"`
+	CreditPurpose []string `json:"credit_purpose"`
+	Documents     []string `json:"documents"`
+	ReviewTime    int      `json:"review_time"`
+	ObtainMethod  []string `json:"obtain_method"`
+	Description   string   `json:"description"`
 }

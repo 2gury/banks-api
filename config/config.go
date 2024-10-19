@@ -10,7 +10,9 @@ type Config struct {
 	Database struct {
 		ConnectionString string `yaml:"connectionString"`
 	} `yaml:"database"`
-	LogLevel string `yaml:"logLevel"`
+	LogLevel      string `yaml:"logLevel"`
+	LeadgidApiKey string `yaml:"leadgidApiKey"`
+	ChatGPTApiKey string `yaml:"chatGPTApiKey"`
 }
 
 type Service struct {
@@ -44,4 +46,12 @@ func LoadConfig() (*Config, error) {
 
 func (c *Config) GetCheckoutPgConnectionString() string {
 	return c.Database.ConnectionString
+}
+
+func (c *Config) GetLeadgidApiKey() string {
+	return c.LeadgidApiKey
+}
+
+func (c *Config) GetChatGPTApiKey() string {
+	return c.ChatGPTApiKey
 }

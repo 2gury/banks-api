@@ -140,6 +140,8 @@ func (m *Bank) validate(all bool) error {
 
 	// no validation rules for ReviewTime
 
+	// no validation rules for Description
+
 	if len(errors) > 0 {
 		return BankMultiError(errors)
 	}
@@ -242,6 +244,8 @@ func (m *GetBanksRequest) validate(all bool) error {
 	// no validation rules for Limit
 
 	// no validation rules for Offset
+
+	// no validation rules for Language
 
 	if len(errors) > 0 {
 		return GetBanksRequestMultiError(errors)
@@ -687,3 +691,1653 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = UpdateBankResponseValidationError{}
+
+// Validate checks the field values on GetPossibleBanksRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetPossibleBanksRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPossibleBanksRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetPossibleBanksRequestMultiError, or nil if none found.
+func (m *GetPossibleBanksRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPossibleBanksRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetPossibleBanksRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPossibleBanksRequestMultiError is an error wrapping multiple validation
+// errors returned by GetPossibleBanksRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetPossibleBanksRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPossibleBanksRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPossibleBanksRequestMultiError) AllErrors() []error { return m }
+
+// GetPossibleBanksRequestValidationError is the validation error returned by
+// GetPossibleBanksRequest.Validate if the designated constraints aren't met.
+type GetPossibleBanksRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPossibleBanksRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPossibleBanksRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPossibleBanksRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPossibleBanksRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPossibleBanksRequestValidationError) ErrorName() string {
+	return "GetPossibleBanksRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPossibleBanksRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPossibleBanksRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPossibleBanksRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPossibleBanksRequestValidationError{}
+
+// Validate checks the field values on GetPossibleBanksResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetPossibleBanksResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPossibleBanksResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetPossibleBanksResponseMultiError, or nil if none found.
+func (m *GetPossibleBanksResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPossibleBanksResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetBanks() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetPossibleBanksResponseValidationError{
+						field:  fmt.Sprintf("Banks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetPossibleBanksResponseValidationError{
+						field:  fmt.Sprintf("Banks[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetPossibleBanksResponseValidationError{
+					field:  fmt.Sprintf("Banks[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetPossibleBanksResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPossibleBanksResponseMultiError is an error wrapping multiple validation
+// errors returned by GetPossibleBanksResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetPossibleBanksResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPossibleBanksResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPossibleBanksResponseMultiError) AllErrors() []error { return m }
+
+// GetPossibleBanksResponseValidationError is the validation error returned by
+// GetPossibleBanksResponse.Validate if the designated constraints aren't met.
+type GetPossibleBanksResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPossibleBanksResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPossibleBanksResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPossibleBanksResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPossibleBanksResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPossibleBanksResponseValidationError) ErrorName() string {
+	return "GetPossibleBanksResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPossibleBanksResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPossibleBanksResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPossibleBanksResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPossibleBanksResponseValidationError{}
+
+// Validate checks the field values on RequestBankInformationRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RequestBankInformationRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RequestBankInformationRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// RequestBankInformationRequestMultiError, or nil if none found.
+func (m *RequestBankInformationRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RequestBankInformationRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ExternalId
+
+	if len(errors) > 0 {
+		return RequestBankInformationRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// RequestBankInformationRequestMultiError is an error wrapping multiple
+// validation errors returned by RequestBankInformationRequest.ValidateAll()
+// if the designated constraints aren't met.
+type RequestBankInformationRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RequestBankInformationRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RequestBankInformationRequestMultiError) AllErrors() []error { return m }
+
+// RequestBankInformationRequestValidationError is the validation error
+// returned by RequestBankInformationRequest.Validate if the designated
+// constraints aren't met.
+type RequestBankInformationRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RequestBankInformationRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RequestBankInformationRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RequestBankInformationRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RequestBankInformationRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RequestBankInformationRequestValidationError) ErrorName() string {
+	return "RequestBankInformationRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RequestBankInformationRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRequestBankInformationRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RequestBankInformationRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RequestBankInformationRequestValidationError{}
+
+// Validate checks the field values on RequestBankInformationResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RequestBankInformationResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RequestBankInformationResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// RequestBankInformationResponseMultiError, or nil if none found.
+func (m *RequestBankInformationResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RequestBankInformationResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetBank()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, RequestBankInformationResponseValidationError{
+					field:  "Bank",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, RequestBankInformationResponseValidationError{
+					field:  "Bank",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBank()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return RequestBankInformationResponseValidationError{
+				field:  "Bank",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return RequestBankInformationResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// RequestBankInformationResponseMultiError is an error wrapping multiple
+// validation errors returned by RequestBankInformationResponse.ValidateAll()
+// if the designated constraints aren't met.
+type RequestBankInformationResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RequestBankInformationResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RequestBankInformationResponseMultiError) AllErrors() []error { return m }
+
+// RequestBankInformationResponseValidationError is the validation error
+// returned by RequestBankInformationResponse.Validate if the designated
+// constraints aren't met.
+type RequestBankInformationResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RequestBankInformationResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RequestBankInformationResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RequestBankInformationResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RequestBankInformationResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RequestBankInformationResponseValidationError) ErrorName() string {
+	return "RequestBankInformationResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RequestBankInformationResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRequestBankInformationResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RequestBankInformationResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RequestBankInformationResponseValidationError{}
+
+// Validate checks the field values on Translation with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Translation) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on Translation with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in TranslationMultiError, or
+// nil if none found.
+func (m *Translation) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *Translation) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for Lexeme
+
+	// no validation rules for TranslatedLexeme
+
+	// no validation rules for SourceLanguage
+
+	// no validation rules for TargetLanguage
+
+	if len(errors) > 0 {
+		return TranslationMultiError(errors)
+	}
+
+	return nil
+}
+
+// TranslationMultiError is an error wrapping multiple validation errors
+// returned by Translation.ValidateAll() if the designated constraints aren't met.
+type TranslationMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m TranslationMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m TranslationMultiError) AllErrors() []error { return m }
+
+// TranslationValidationError is the validation error returned by
+// Translation.Validate if the designated constraints aren't met.
+type TranslationValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e TranslationValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e TranslationValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e TranslationValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e TranslationValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e TranslationValidationError) ErrorName() string { return "TranslationValidationError" }
+
+// Error satisfies the builtin error interface
+func (e TranslationValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sTranslation.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = TranslationValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = TranslationValidationError{}
+
+// Validate checks the field values on RequestTranslationTextRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RequestTranslationTextRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RequestTranslationTextRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// RequestTranslationTextRequestMultiError, or nil if none found.
+func (m *RequestTranslationTextRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RequestTranslationTextRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Language
+
+	// no validation rules for Text
+
+	if len(errors) > 0 {
+		return RequestTranslationTextRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// RequestTranslationTextRequestMultiError is an error wrapping multiple
+// validation errors returned by RequestTranslationTextRequest.ValidateAll()
+// if the designated constraints aren't met.
+type RequestTranslationTextRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RequestTranslationTextRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RequestTranslationTextRequestMultiError) AllErrors() []error { return m }
+
+// RequestTranslationTextRequestValidationError is the validation error
+// returned by RequestTranslationTextRequest.Validate if the designated
+// constraints aren't met.
+type RequestTranslationTextRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RequestTranslationTextRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RequestTranslationTextRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RequestTranslationTextRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RequestTranslationTextRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RequestTranslationTextRequestValidationError) ErrorName() string {
+	return "RequestTranslationTextRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RequestTranslationTextRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRequestTranslationTextRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RequestTranslationTextRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RequestTranslationTextRequestValidationError{}
+
+// Validate checks the field values on RequestTranslationTextResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RequestTranslationTextResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RequestTranslationTextResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// RequestTranslationTextResponseMultiError, or nil if none found.
+func (m *RequestTranslationTextResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RequestTranslationTextResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Language
+
+	// no validation rules for Text
+
+	if len(errors) > 0 {
+		return RequestTranslationTextResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// RequestTranslationTextResponseMultiError is an error wrapping multiple
+// validation errors returned by RequestTranslationTextResponse.ValidateAll()
+// if the designated constraints aren't met.
+type RequestTranslationTextResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RequestTranslationTextResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RequestTranslationTextResponseMultiError) AllErrors() []error { return m }
+
+// RequestTranslationTextResponseValidationError is the validation error
+// returned by RequestTranslationTextResponse.Validate if the designated
+// constraints aren't met.
+type RequestTranslationTextResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RequestTranslationTextResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RequestTranslationTextResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RequestTranslationTextResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RequestTranslationTextResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RequestTranslationTextResponseValidationError) ErrorName() string {
+	return "RequestTranslationTextResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RequestTranslationTextResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRequestTranslationTextResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RequestTranslationTextResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RequestTranslationTextResponseValidationError{}
+
+// Validate checks the field values on GetTranslationTextRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetTranslationTextRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTranslationTextRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetTranslationTextRequestMultiError, or nil if none found.
+func (m *GetTranslationTextRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTranslationTextRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Language
+
+	// no validation rules for Text
+
+	if len(errors) > 0 {
+		return GetTranslationTextRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTranslationTextRequestMultiError is an error wrapping multiple validation
+// errors returned by GetTranslationTextRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetTranslationTextRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTranslationTextRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTranslationTextRequestMultiError) AllErrors() []error { return m }
+
+// GetTranslationTextRequestValidationError is the validation error returned by
+// GetTranslationTextRequest.Validate if the designated constraints aren't met.
+type GetTranslationTextRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTranslationTextRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTranslationTextRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTranslationTextRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTranslationTextRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTranslationTextRequestValidationError) ErrorName() string {
+	return "GetTranslationTextRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetTranslationTextRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTranslationTextRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTranslationTextRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTranslationTextRequestValidationError{}
+
+// Validate checks the field values on GetTranslationTextResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetTranslationTextResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTranslationTextResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetTranslationTextResponseMultiError, or nil if none found.
+func (m *GetTranslationTextResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTranslationTextResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetTranslation()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetTranslationTextResponseValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetTranslationTextResponseValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetTranslation()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetTranslationTextResponseValidationError{
+				field:  "Translation",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return GetTranslationTextResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTranslationTextResponseMultiError is an error wrapping multiple
+// validation errors returned by GetTranslationTextResponse.ValidateAll() if
+// the designated constraints aren't met.
+type GetTranslationTextResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTranslationTextResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTranslationTextResponseMultiError) AllErrors() []error { return m }
+
+// GetTranslationTextResponseValidationError is the validation error returned
+// by GetTranslationTextResponse.Validate if the designated constraints aren't met.
+type GetTranslationTextResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTranslationTextResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTranslationTextResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTranslationTextResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTranslationTextResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTranslationTextResponseValidationError) ErrorName() string {
+	return "GetTranslationTextResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetTranslationTextResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTranslationTextResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTranslationTextResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTranslationTextResponseValidationError{}
+
+// Validate checks the field values on CreateTranslationTextRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CreateTranslationTextRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CreateTranslationTextRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CreateTranslationTextRequestMultiError, or nil if none found.
+func (m *CreateTranslationTextRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateTranslationTextRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetTranslation()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, CreateTranslationTextRequestValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, CreateTranslationTextRequestValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetTranslation()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateTranslationTextRequestValidationError{
+				field:  "Translation",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return CreateTranslationTextRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateTranslationTextRequestMultiError is an error wrapping multiple
+// validation errors returned by CreateTranslationTextRequest.ValidateAll() if
+// the designated constraints aren't met.
+type CreateTranslationTextRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateTranslationTextRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateTranslationTextRequestMultiError) AllErrors() []error { return m }
+
+// CreateTranslationTextRequestValidationError is the validation error returned
+// by CreateTranslationTextRequest.Validate if the designated constraints
+// aren't met.
+type CreateTranslationTextRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateTranslationTextRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateTranslationTextRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateTranslationTextRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateTranslationTextRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateTranslationTextRequestValidationError) ErrorName() string {
+	return "CreateTranslationTextRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateTranslationTextRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateTranslationTextRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateTranslationTextRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateTranslationTextRequestValidationError{}
+
+// Validate checks the field values on CreateTranslationTextResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CreateTranslationTextResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CreateTranslationTextResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// CreateTranslationTextResponseMultiError, or nil if none found.
+func (m *CreateTranslationTextResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateTranslationTextResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetTranslation()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, CreateTranslationTextResponseValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, CreateTranslationTextResponseValidationError{
+					field:  "Translation",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetTranslation()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateTranslationTextResponseValidationError{
+				field:  "Translation",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return CreateTranslationTextResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateTranslationTextResponseMultiError is an error wrapping multiple
+// validation errors returned by CreateTranslationTextResponse.ValidateAll()
+// if the designated constraints aren't met.
+type CreateTranslationTextResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateTranslationTextResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateTranslationTextResponseMultiError) AllErrors() []error { return m }
+
+// CreateTranslationTextResponseValidationError is the validation error
+// returned by CreateTranslationTextResponse.Validate if the designated
+// constraints aren't met.
+type CreateTranslationTextResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateTranslationTextResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateTranslationTextResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateTranslationTextResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateTranslationTextResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateTranslationTextResponseValidationError) ErrorName() string {
+	return "CreateTranslationTextResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateTranslationTextResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateTranslationTextResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateTranslationTextResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateTranslationTextResponseValidationError{}
+
+// Validate checks the field values on GetTranslationsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetTranslationsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTranslationsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetTranslationsRequestMultiError, or nil if none found.
+func (m *GetTranslationsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTranslationsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetTranslationsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTranslationsRequestMultiError is an error wrapping multiple validation
+// errors returned by GetTranslationsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetTranslationsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTranslationsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTranslationsRequestMultiError) AllErrors() []error { return m }
+
+// GetTranslationsRequestValidationError is the validation error returned by
+// GetTranslationsRequest.Validate if the designated constraints aren't met.
+type GetTranslationsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTranslationsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTranslationsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTranslationsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTranslationsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTranslationsRequestValidationError) ErrorName() string {
+	return "GetTranslationsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetTranslationsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTranslationsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTranslationsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTranslationsRequestValidationError{}
+
+// Validate checks the field values on GetTranslationsResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetTranslationsResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetTranslationsResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetTranslationsResponseMultiError, or nil if none found.
+func (m *GetTranslationsResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetTranslationsResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetTranslations() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetTranslationsResponseValidationError{
+						field:  fmt.Sprintf("Translations[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetTranslationsResponseValidationError{
+						field:  fmt.Sprintf("Translations[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetTranslationsResponseValidationError{
+					field:  fmt.Sprintf("Translations[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetTranslationsResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetTranslationsResponseMultiError is an error wrapping multiple validation
+// errors returned by GetTranslationsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetTranslationsResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetTranslationsResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetTranslationsResponseMultiError) AllErrors() []error { return m }
+
+// GetTranslationsResponseValidationError is the validation error returned by
+// GetTranslationsResponse.Validate if the designated constraints aren't met.
+type GetTranslationsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetTranslationsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetTranslationsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetTranslationsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetTranslationsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetTranslationsResponseValidationError) ErrorName() string {
+	return "GetTranslationsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetTranslationsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetTranslationsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetTranslationsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetTranslationsResponseValidationError{}
+
+// Validate checks the field values on GetPossibleBanksResponse_PossibleBank
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetPossibleBanksResponse_PossibleBank) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPossibleBanksResponse_PossibleBank
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetPossibleBanksResponse_PossibleBankMultiError, or nil if none found.
+func (m *GetPossibleBanksResponse_PossibleBank) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPossibleBanksResponse_PossibleBank) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ExternalId
+
+	// no validation rules for ExternalLegacyId
+
+	// no validation rules for Name
+
+	// no validation rules for Logo
+
+	if len(errors) > 0 {
+		return GetPossibleBanksResponse_PossibleBankMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPossibleBanksResponse_PossibleBankMultiError is an error wrapping
+// multiple validation errors returned by
+// GetPossibleBanksResponse_PossibleBank.ValidateAll() if the designated
+// constraints aren't met.
+type GetPossibleBanksResponse_PossibleBankMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPossibleBanksResponse_PossibleBankMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPossibleBanksResponse_PossibleBankMultiError) AllErrors() []error { return m }
+
+// GetPossibleBanksResponse_PossibleBankValidationError is the validation error
+// returned by GetPossibleBanksResponse_PossibleBank.Validate if the
+// designated constraints aren't met.
+type GetPossibleBanksResponse_PossibleBankValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPossibleBanksResponse_PossibleBankValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPossibleBanksResponse_PossibleBankValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPossibleBanksResponse_PossibleBankValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPossibleBanksResponse_PossibleBankValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPossibleBanksResponse_PossibleBankValidationError) ErrorName() string {
+	return "GetPossibleBanksResponse_PossibleBankValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPossibleBanksResponse_PossibleBankValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPossibleBanksResponse_PossibleBank.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPossibleBanksResponse_PossibleBankValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPossibleBanksResponse_PossibleBankValidationError{}
