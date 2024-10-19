@@ -72,7 +72,9 @@ vendor-proto/google/protobuf:
 	mv vendor-proto/protobuf/src/google/protobuf vendor-proto/google
 	rm -rf vendor-proto/protobuf
 
-generate: generate-banks-api
+generate: 
+	generate-banks-api
+	generate-reviews-api
 
 generate-banks-api: bin vendor-proto/google/api vendor-proto/google/protobuf
 	mkdir -p pkg/banks
