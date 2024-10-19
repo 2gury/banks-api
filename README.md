@@ -2,6 +2,7 @@
 
 Ручка получение перевода из гугла
 POST localhost:8080/v1/translate/request-translation-text
+
 Request:
 ```
 {
@@ -21,6 +22,7 @@ Response:
 
 Ручка получения перевода из базы
 POST localhost:8080/v1/translate/get-translation-text
+
 Request:
 ```
 {
@@ -45,6 +47,7 @@ Response:
 
 Ручка создания нового перевода
 POST localhost:8080/v1/translate/create
+
 Request:
 ```
 {
@@ -74,6 +77,7 @@ Response:
 
 Ручка изменения текущего перевода
 POST localhost:8080/v1/translate/create
+
 Request:
 ```
 {
@@ -104,6 +108,7 @@ Response:
 
 Ручка получения переводов
 POST localhost:8080/v1/translate/get-list
+
 Request:
 ```
 {}
@@ -156,6 +161,7 @@ Response:
 
 Ручка получения списка банков
 localhost:8080/v1/banks/get
+
 Request:
 ```
 {
@@ -276,6 +282,7 @@ Response:
 
 Ручка создание нового банка
 POST localhost:8080/v1/banks/update
+
 Request:
 ```
 {
@@ -325,6 +332,7 @@ Response:
 
 Ручка изменения существующего банка
 POST localhost:8080/v1/banks/update
+
 Request:
 ```
 {
@@ -375,6 +383,7 @@ Response:
 
 Ручка получения возможных банковский предложений
 POST localhost:8080/v1/banks/get-possible
+
 Request:
 ```
 {}
@@ -404,6 +413,7 @@ Response:
 
 Ручка запроса инфы по банку (тяжелая ручка)
 POST localhost:8080/v1/banks/request-bank-information
+
 Request:
 ```
 {
@@ -446,6 +456,7 @@ Response:
 
 Ручка получения списка отзывов
 POST localhost:8080/v1/reviews/get-list
+
 Request:
 ```
 {}
@@ -481,6 +492,7 @@ Response:
 
 Ручка создания отзыва
 POST localhost:8080/v1/reviews/create
+
 Request:
 ```
 {
@@ -501,6 +513,7 @@ Response:
 
 Ручка аппрува/деклайна отзыва
 POST localhost:8080/v1/reviews/update
+
 Request:
 ```
 {
@@ -518,6 +531,7 @@ Response:
 
 Ручка включения/выключения автомодерации
 POST localhost:8080/v1/automoderation/update
+
 Request:
 ```
 {
