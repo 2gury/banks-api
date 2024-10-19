@@ -6,6 +6,10 @@ import (
 )
 
 func ModelToPBTranslation(translation *model.Translation) *pbbanks.Translation {
+	if translation == nil {
+		return nil
+	}
+
 	return &pbbanks.Translation{
 		Id:               translation.ID,
 		Lexeme:           translation.Lexeme,
@@ -16,6 +20,10 @@ func ModelToPBTranslation(translation *model.Translation) *pbbanks.Translation {
 }
 
 func ModelsToPBTranslations(translations []*model.Translation) []*pbbanks.Translation {
+	if translations == nil {
+		return nil
+	}
+
 	pbTranslations := make([]*pbbanks.Translation, 0, len(translations))
 
 	for _, tr := range translations {
@@ -26,6 +34,10 @@ func ModelsToPBTranslations(translations []*model.Translation) []*pbbanks.Transl
 }
 
 func PBToModelTranslation(translation *pbbanks.Translation) *model.Translation {
+	if translation == nil {
+		return nil
+	}
+
 	return &model.Translation{
 		ID:               translation.Id,
 		Lexeme:           translation.Lexeme,

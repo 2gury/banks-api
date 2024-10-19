@@ -11,6 +11,10 @@ type Translation struct {
 }
 
 func ConvertTranslationToModel(tr *schema.Translation) *Translation {
+	if tr == nil {
+		return nil
+	}
+
 	return &Translation{
 		ID:               tr.ID,
 		Lexeme:           tr.Lexeme,
@@ -21,6 +25,10 @@ func ConvertTranslationToModel(tr *schema.Translation) *Translation {
 }
 
 func ConvertTranslationsToModel(translations []schema.Translation) []*Translation {
+	if translations == nil {
+		return nil
+	}
+
 	modelTranslations := make([]*Translation, 0, len(translations))
 
 	for _, tr := range translations {

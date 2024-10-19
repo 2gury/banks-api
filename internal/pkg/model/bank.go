@@ -2,6 +2,7 @@ package model
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"banks-api/internal/pkg/database/schema"
@@ -37,6 +38,10 @@ type BankData struct {
 }
 
 func ConvertBanksToModel(banks []schema.Bank) ([]*Bank, error) {
+	if banks == nil {
+		return nil, fmt.Errorf("empty banks")
+	}
+
 	modelBanks := make([]*Bank, 0, len(banks))
 
 	for _, b := range banks {
@@ -71,6 +76,10 @@ func ConvertBankToModel(bank schema.Bank) (*Bank, error) {
 }
 
 func ConvertBankToSchema(bank *Bank) (*schema.Bank, error) {
+	if bank == nil {
+		return nil, fmt.Errorf("empty bank")
+	}
+
 	rawDataBank, err := json.Marshal(bank.BankData)
 	if err != nil {
 		return nil, err
