@@ -45,24 +45,15 @@ service ReviewService {
 message Review {
  string id = 1 [json_name = "id"];
  string product_id = 2 [json_name = "product_id"];
- string user_id = 3 [json_name = "user_id"];
  string content = 4 [json_name = "content"];
  int32 rating = 5 [json_name = "rating"]; // Rating from 1 to 5
  google.protobuf.Timestamp created_at = 6;
  bool approved = 7 [json_name = "approved"];
-
- int64 period_from = 8 [json_name = "period_from"];
- int64 period_to = 9 [json_name = "period_to"];
- int64 amount_from = 10 [json_name = "amount_from"];
- int64 amount_to = 11 [json_name = "amount_to"];
- double rate_from = 12 [json_name = "rate_from"];
- double rate_to = 13 [json_name = "rate_to"];
 }
 
 // WriteReviewRequest represents the request to write a new review.
 message WriteReviewRequest {
  string product_id = 1 [json_name = "bank"];
- string user_id = 2 [json_name = "bank"];
  string content = 3 [json_name = "bank"];
  int32 rating = 4 [json_name = "bank"]; // Rating from 1 to 5
 }

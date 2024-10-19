@@ -2,7 +2,6 @@ package model
 
 import (
 	"encoding/json"
-	"time"
 
 	"banks-api/internal/pkg/database/schema"
 )
@@ -10,14 +9,12 @@ import (
 type Review struct {
 	ID        int64
 	ProductID int64
-	UserID    int64
 	Content   string
 	Rating    int
 
 	ReviewData ReviewData
 
-	CreatedAt time.Time
-	Approved  bool
+	Approved bool
 }
 
 type ReviewData struct {
@@ -51,10 +48,8 @@ func ConvertReviewToModel(review schema.Review) (*Review, error) {
 	return &Review{
 		ID:         review.ID,
 		ProductID:  review.ProductID,
-		UserID:     review.UserID,
 		Content:    review.Content,
 		Rating:     review.Rating,
 		ReviewData: ReviewData(reviewData),
-		CreatedAt:  review.CreatedAt,
 	}, nil
 }
