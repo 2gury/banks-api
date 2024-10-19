@@ -7,7 +7,7 @@ import (
 )
 
 func (w *BanksHandler) UpdateBank(ctx context.Context, bank *model.Bank) error {
-	if err := w.repo.UpdateBank(ctx, bank); err != nil {
+	if _, err := w.repo.UpdateBank(ctx, bank); err != nil {
 		return err
 	}
 

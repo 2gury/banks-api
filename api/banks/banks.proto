@@ -21,6 +21,48 @@ service Banks {
       body: "*"
     };
   };
+
+  rpc GetPossibleBanks(GetPossibleBanksRequest) returns (GetPossibleBanksResponse) {
+    option (google.api.http) = {
+      post: "/v1/banks/get-possible"
+      body: "*"
+    };
+  };
+
+  rpc RequestBankInformation(RequestBankInformationRequest) returns (RequestBankInformationResponse) {
+    option (google.api.http) = {
+      post: "/v1/banks/request-bank-information"
+      body: "*"
+    };
+  };
+
+  rpc RequestTranslationText(RequestTranslationTextRequest) returns (RequestTranslationTextResponse) {
+    option (google.api.http) = {
+      post: "/v1/translate/request-translation-text"
+      body: "*"
+    };
+  };
+
+  rpc GetTranslationText(GetTranslationTextRequest) returns (GetTranslationTextResponse) {
+    option (google.api.http) = {
+      post: "/v1/translate/get-translation-text"
+      body: "*"
+    };
+  };
+
+  rpc CreateTranslationText(CreateTranslationTextRequest) returns (CreateTranslationTextResponse) {
+    option (google.api.http) = {
+      post: "/v1/translate/create"
+      body: "*"
+    };
+  };
+
+  rpc GetTranslations(GetTranslationsRequest) returns (GetTranslationsResponse) {
+    option (google.api.http) = {
+      post: "/v1/translate/get-list"
+      body: "*"
+    };
+  };
 }
 
 message Bank {
@@ -44,11 +86,13 @@ message Bank {
   repeated string credit_purpose = 17 [json_name = "credit_purpose"];
   repeated string documents = 18 [json_name = "documents"];
   repeated string obtain_method = 19 [json_name = "obtain_method"];
+  string description = 20 [json_name = "description"];
 }
 
 message GetBanksRequest {
   uint64 limit = 1 [json_name = "limit"];
   uint64 offset = 2 [json_name = "offset"];
+  string language = 3 [json_name = "language"];
 }
 
 message GetBanksResponse {
@@ -60,3 +104,66 @@ message UpdateBankRequest {
 }
 
 message UpdateBankResponse {}
+
+message GetPossibleBanksRequest {}
+
+message GetPossibleBanksResponse {
+  message PossibleBank {
+    int64 external_id = 1 [json_name = "external_id"];
+    int64 external_legacy_id = 2 [json_name = "external_legacy_id"];
+    string name = 3 [json_name = "name"];
+    string logo = 4 [json_name = "logo"];
+  }
+
+  repeated PossibleBank banks = 1 [json_name = "banks"];
+}
+
+message RequestBankInformationRequest {
+  int64 external_id = 1 [json_name = "external_id"];
+}
+
+message RequestBankInformationResponse {
+  Bank bank = 1 [json_name = "bank"];
+}
+
+message Translation {
+  int64 id = 1 [json_name = "id"];
+  string lexeme = 2  [json_name = "lexeme"];
+  string translated_lexeme = 3  [json_name = "translated_lexeme"];
+  string source_language = 4  [json_name = "source_language"];
+  string target_language = 5  [json_name = "target_language"];
+}
+
+message RequestTranslationTextRequest {
+  string language = 1 [json_name = "language"];
+  string text = 2 [json_name = "text"];
+}
+
+message RequestTranslationTextResponse {
+  string language = 1 [json_name = "language"];
+  string text = 2 [json_name = "text"];
+}
+
+message GetTranslationTextRequest {
+  string language = 1 [json_name = "language"];
+  string text = 2 [json_name = "text"];
+}
+
+message GetTranslationTextResponse {
+  Translation translation = 1 [json_name = "translation"];
+}
+
+message CreateTranslationTextRequest {
+  Translation translation = 1 [json_name = "translation"];
+}
+
+message CreateTranslationTextResponse {
+  Translation translation = 1 [json_name = "translation"];
+}
+
+message GetTranslationsRequest {}
+
+message GetTranslationsResponse {
+  repeated Translation translations = 1 [json_name = "translations"];
+}
+

@@ -38,6 +38,7 @@ func ModelToPBBank(bank *model.Bank) *pbbanks.Bank {
 		CreditPurpose:    bankData.CreditPurpose,
 		Documents:        bankData.Documents,
 		ObtainMethod:     bankData.ObtainMethod,
+		Description:      bankData.Description,
 	}
 }
 
@@ -63,6 +64,7 @@ func PBToModelBank(bank *pbbanks.Bank) *model.Bank {
 			CreditPurpose: bank.CreditPurpose,
 			Documents:     bank.Documents,
 			ObtainMethod:  bank.ObtainMethod,
+			Description:   bank.Description,
 		},
 	}
 
@@ -75,4 +77,25 @@ func PBToModelBank(bank *pbbanks.Bank) *model.Bank {
 	}
 
 	return modelBank
+}
+
+func ModelToPBPossibleBanks(offers *model.OffersResponse) *pbbanks.GetPossibleBanksResponse {
+	if offers == nil {
+		return nil
+	}
+
+	resp := &pbbanks.GetPossibleBanksResponse{
+		Banks: make([]*pbbanks.GetPossibleBanksResponse_PossibleBank, 0, len(offers.Data)),
+	}
+
+	for _, b := range offers.Data {
+		resp.Banks = append(resp.Banks, &pbbanks.GetPossibleBanksResponse_PossibleBank{
+			ExternalId:       int64(b.Id),
+			ExternalLegacyId: int64(b.LegacyId),
+			Name:             b.Name,
+			Logo:             b.Logo,
+		})
+	}
+
+	return resp
 }

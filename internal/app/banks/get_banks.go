@@ -12,8 +12,9 @@ import (
 
 func (w *BanksHandler) GetBanks(ctx context.Context, req *pbbanks.GetBanksRequest) (*pbbanks.GetBanksResponse, error) {
 	banks, err := w.service.GetBanks(ctx, &model.BankFilters{
-		Limit:  req.Limit,
-		Offset: req.Offset,
+		Limit:    req.Limit,
+		Offset:   req.Offset,
+		Language: req.GetLanguage(),
 	})
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())

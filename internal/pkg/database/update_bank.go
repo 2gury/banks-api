@@ -7,7 +7,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (r *BanksRepository) UpdateBank(ctx context.Context, bank *model.Bank) error {
+func (r *BanksRepository) UpdateBank(ctx context.Context, bank *model.Bank) (int64, error) {
 	var (
 		updateBankColums = []string{
 			bankExternalIDColumn,
@@ -48,17 +48,18 @@ func (r *BanksRepository) UpdateBank(ctx context.Context, bank *model.Bank) erro
 					logo=excluded.logo,
 					url=excluded.url,
 					bank_data=excluded.bank_data,
-					updated_at=now()`)
+					updated_at=now()
+					RETURNING id;`)
 
 	rawSQL, args, err := query.ToSql()
 	if err != nil {
-		return errors.Wrap(err, "GetBanks.ToSql")
+		return 0, errors.Wrap(err, "GetBanks.ToSql")
 	}
 
-	_, err = r.pool.Exec(ctx, rawSQL, args...)
-	if err != nil {
-		return errors.Wrap(err, "UpdateBank.Exec")
+	var bankID int64
+	if err = r.pool.QueryRow(ctx, rawSQL, args...).Scan(&bankID); err != nil {
+		return 0, errors.Wrap(err, "UpdateBank.Exec")
 	}
 
-	return nil
+	return bankID, nil
 }

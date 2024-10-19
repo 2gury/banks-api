@@ -19,8 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Banks_GetBanks_FullMethodName   = "/worker.Banks/GetBanks"
-	Banks_UpdateBank_FullMethodName = "/worker.Banks/UpdateBank"
+	Banks_GetBanks_FullMethodName               = "/worker.Banks/GetBanks"
+	Banks_UpdateBank_FullMethodName             = "/worker.Banks/UpdateBank"
+	Banks_GetPossibleBanks_FullMethodName       = "/worker.Banks/GetPossibleBanks"
+	Banks_RequestBankInformation_FullMethodName = "/worker.Banks/RequestBankInformation"
+	Banks_RequestTranslationText_FullMethodName = "/worker.Banks/RequestTranslationText"
+	Banks_GetTranslationText_FullMethodName     = "/worker.Banks/GetTranslationText"
+	Banks_CreateTranslationText_FullMethodName  = "/worker.Banks/CreateTranslationText"
+	Banks_GetTranslations_FullMethodName        = "/worker.Banks/GetTranslations"
 )
 
 // BanksClient is the client API for Banks service.
@@ -29,6 +35,12 @@ const (
 type BanksClient interface {
 	GetBanks(ctx context.Context, in *GetBanksRequest, opts ...grpc.CallOption) (*GetBanksResponse, error)
 	UpdateBank(ctx context.Context, in *UpdateBankRequest, opts ...grpc.CallOption) (*UpdateBankResponse, error)
+	GetPossibleBanks(ctx context.Context, in *GetPossibleBanksRequest, opts ...grpc.CallOption) (*GetPossibleBanksResponse, error)
+	RequestBankInformation(ctx context.Context, in *RequestBankInformationRequest, opts ...grpc.CallOption) (*RequestBankInformationResponse, error)
+	RequestTranslationText(ctx context.Context, in *RequestTranslationTextRequest, opts ...grpc.CallOption) (*RequestTranslationTextResponse, error)
+	GetTranslationText(ctx context.Context, in *GetTranslationTextRequest, opts ...grpc.CallOption) (*GetTranslationTextResponse, error)
+	CreateTranslationText(ctx context.Context, in *CreateTranslationTextRequest, opts ...grpc.CallOption) (*CreateTranslationTextResponse, error)
+	GetTranslations(ctx context.Context, in *GetTranslationsRequest, opts ...grpc.CallOption) (*GetTranslationsResponse, error)
 }
 
 type banksClient struct {
@@ -59,12 +71,78 @@ func (c *banksClient) UpdateBank(ctx context.Context, in *UpdateBankRequest, opt
 	return out, nil
 }
 
+func (c *banksClient) GetPossibleBanks(ctx context.Context, in *GetPossibleBanksRequest, opts ...grpc.CallOption) (*GetPossibleBanksResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPossibleBanksResponse)
+	err := c.cc.Invoke(ctx, Banks_GetPossibleBanks_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) RequestBankInformation(ctx context.Context, in *RequestBankInformationRequest, opts ...grpc.CallOption) (*RequestBankInformationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RequestBankInformationResponse)
+	err := c.cc.Invoke(ctx, Banks_RequestBankInformation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) RequestTranslationText(ctx context.Context, in *RequestTranslationTextRequest, opts ...grpc.CallOption) (*RequestTranslationTextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RequestTranslationTextResponse)
+	err := c.cc.Invoke(ctx, Banks_RequestTranslationText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) GetTranslationText(ctx context.Context, in *GetTranslationTextRequest, opts ...grpc.CallOption) (*GetTranslationTextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTranslationTextResponse)
+	err := c.cc.Invoke(ctx, Banks_GetTranslationText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) CreateTranslationText(ctx context.Context, in *CreateTranslationTextRequest, opts ...grpc.CallOption) (*CreateTranslationTextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateTranslationTextResponse)
+	err := c.cc.Invoke(ctx, Banks_CreateTranslationText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) GetTranslations(ctx context.Context, in *GetTranslationsRequest, opts ...grpc.CallOption) (*GetTranslationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTranslationsResponse)
+	err := c.cc.Invoke(ctx, Banks_GetTranslations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BanksServer is the server API for Banks service.
 // All implementations must embed UnimplementedBanksServer
 // for forward compatibility.
 type BanksServer interface {
 	GetBanks(context.Context, *GetBanksRequest) (*GetBanksResponse, error)
 	UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error)
+	GetPossibleBanks(context.Context, *GetPossibleBanksRequest) (*GetPossibleBanksResponse, error)
+	RequestBankInformation(context.Context, *RequestBankInformationRequest) (*RequestBankInformationResponse, error)
+	RequestTranslationText(context.Context, *RequestTranslationTextRequest) (*RequestTranslationTextResponse, error)
+	GetTranslationText(context.Context, *GetTranslationTextRequest) (*GetTranslationTextResponse, error)
+	CreateTranslationText(context.Context, *CreateTranslationTextRequest) (*CreateTranslationTextResponse, error)
+	GetTranslations(context.Context, *GetTranslationsRequest) (*GetTranslationsResponse, error)
 	mustEmbedUnimplementedBanksServer()
 }
 
@@ -80,6 +158,24 @@ func (UnimplementedBanksServer) GetBanks(context.Context, *GetBanksRequest) (*Ge
 }
 func (UnimplementedBanksServer) UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBank not implemented")
+}
+func (UnimplementedBanksServer) GetPossibleBanks(context.Context, *GetPossibleBanksRequest) (*GetPossibleBanksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPossibleBanks not implemented")
+}
+func (UnimplementedBanksServer) RequestBankInformation(context.Context, *RequestBankInformationRequest) (*RequestBankInformationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestBankInformation not implemented")
+}
+func (UnimplementedBanksServer) RequestTranslationText(context.Context, *RequestTranslationTextRequest) (*RequestTranslationTextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestTranslationText not implemented")
+}
+func (UnimplementedBanksServer) GetTranslationText(context.Context, *GetTranslationTextRequest) (*GetTranslationTextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTranslationText not implemented")
+}
+func (UnimplementedBanksServer) CreateTranslationText(context.Context, *CreateTranslationTextRequest) (*CreateTranslationTextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTranslationText not implemented")
+}
+func (UnimplementedBanksServer) GetTranslations(context.Context, *GetTranslationsRequest) (*GetTranslationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
 }
 func (UnimplementedBanksServer) mustEmbedUnimplementedBanksServer() {}
 func (UnimplementedBanksServer) testEmbeddedByValue()               {}
@@ -138,6 +234,114 @@ func _Banks_UpdateBank_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Banks_GetPossibleBanks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPossibleBanksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).GetPossibleBanks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_GetPossibleBanks_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).GetPossibleBanks(ctx, req.(*GetPossibleBanksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_RequestBankInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestBankInformationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).RequestBankInformation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_RequestBankInformation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).RequestBankInformation(ctx, req.(*RequestBankInformationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_RequestTranslationText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestTranslationTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).RequestTranslationText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_RequestTranslationText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).RequestTranslationText(ctx, req.(*RequestTranslationTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_GetTranslationText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTranslationTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).GetTranslationText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_GetTranslationText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).GetTranslationText(ctx, req.(*GetTranslationTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_CreateTranslationText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateTranslationTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).CreateTranslationText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_CreateTranslationText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).CreateTranslationText(ctx, req.(*CreateTranslationTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_GetTranslations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTranslationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).GetTranslations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_GetTranslations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).GetTranslations(ctx, req.(*GetTranslationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Banks_ServiceDesc is the grpc.ServiceDesc for Banks service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +356,30 @@ var Banks_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBank",
 			Handler:    _Banks_UpdateBank_Handler,
+		},
+		{
+			MethodName: "GetPossibleBanks",
+			Handler:    _Banks_GetPossibleBanks_Handler,
+		},
+		{
+			MethodName: "RequestBankInformation",
+			Handler:    _Banks_RequestBankInformation_Handler,
+		},
+		{
+			MethodName: "RequestTranslationText",
+			Handler:    _Banks_RequestTranslationText_Handler,
+		},
+		{
+			MethodName: "GetTranslationText",
+			Handler:    _Banks_GetTranslationText_Handler,
+		},
+		{
+			MethodName: "CreateTranslationText",
+			Handler:    _Banks_CreateTranslationText_Handler,
+		},
+		{
+			MethodName: "GetTranslations",
+			Handler:    _Banks_GetTranslations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
