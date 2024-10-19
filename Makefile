@@ -83,6 +83,15 @@ generate-banks-api: bin vendor-proto/google/api vendor-proto/google/protobuf
 	--validate_out="lang=go,paths=source_relative:pkg/banks" \
 	api/banks/banks.proto
 
+generate-reviews-api: bin vendor-proto/google/api vendor-proto/google/protobuf
+	mkdir -p pkg/reviews
+	$(PROTOC) -I api/reviews -I vendor-proto \
+	--go_out pkg/reviews --go_opt paths=source_relative \
+	--go-grpc_out pkg/reviews --go-grpc_opt paths=source_relative \
+	--grpc-gateway_out pkg/reviews --grpc-gateway_opt paths=source_relative \
+	--validate_out="lang=go,paths=source_relative:pkg/reviews" \
+	api/reviews/reviews.proto
+
 WEB_APP = web
 BUILD_DIR = $(PWD)/bin
 
