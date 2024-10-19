@@ -7,6 +7,10 @@ import (
 )
 
 func ModelToPBBanks(banks []*model.Bank) []*pbbanks.Bank {
+	if banks == nil {
+		return nil
+	}
+
 	pbBanks := make([]*pbbanks.Bank, 0, len(banks))
 
 	for _, b := range banks {
@@ -17,6 +21,10 @@ func ModelToPBBanks(banks []*model.Bank) []*pbbanks.Bank {
 }
 
 func ModelToPBBank(bank *model.Bank) *pbbanks.Bank {
+	if bank == nil {
+		return nil
+	}
+
 	bankData := bank.BankData
 	return &pbbanks.Bank{
 		Id:               bank.ID,
@@ -43,6 +51,10 @@ func ModelToPBBank(bank *model.Bank) *pbbanks.Bank {
 }
 
 func PBToModelBank(bank *pbbanks.Bank) *model.Bank {
+	if bank == nil {
+		return nil
+	}
+
 	modelBank := &model.Bank{
 		ID:               bank.Id,
 		ExternalID:       bank.ExternalId,

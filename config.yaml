@@ -1,5 +1,3 @@
 database:
   connectionString: "postgres://user:password@localhost:5432/banks?sslmode=disable"
 logLevel: "INFO"
-leadgidApiKey: "key"
-chatGPTApiKey: "check"
