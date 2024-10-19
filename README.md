@@ -442,7 +442,94 @@ Response:
     }
 }
 ```
+---
 
+Ручка получения списка отзывов
+POST localhost:8080/v1/reviews/get-list
+Request:
+```
+{}
+```
 
+Response:
+```
+{
+    "reviews": [
+        {
+            "id": "1",
+            "content": "Понравился процесс оформления кредита",
+            "is_approved": false,
+            "user_email": "test@mail.ru",
+            "user_phone": "+893455474543",
+            "rating": "4",
+            "bank_id": "12"
+        },
+        {
+            "id": "12",
+            "content": "Все понравилось",
+            "is_approved": true,
+            "user_email": "testing@mail.ru",
+            "user_phone": "+892325474543",
+            "rating": "1",
+            "bank_id": "23"
+        }
+    ]
+}
+```
+
+---
+
+Ручка создания отзыва
+POST localhost:8080/v1/reviews/create
+Request:
+```
+{
+    "content": "Все понравилось",
+    "user_email": "testing@mail.ru",
+    "user_phone": "+892325474543",
+    "rating": "1",
+    "bank_id": "23"
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+Ручка аппрува/деклайна отзыва
+POST localhost:8080/v1/reviews/update
+Request:
+```
+{
+    "id": "12",
+    "is_approved": true
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+Ручка включения/выключения автомодерации
+POST localhost:8080/v1/automoderation/update
+Request:
+```
+{
+    "automoderation_enable": true
+}
+```
+
+Response:
+```
+{}
+```
+
+---
 
 
