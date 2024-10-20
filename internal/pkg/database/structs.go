@@ -23,3 +23,22 @@ const (
 	translationSourceLanguageColumn   = "source_language"
 	translationTargetLanguageColumn   = "target_language"
 )
+
+const (
+	reviewsTableName = "reviews"
+
+	reviewIDColumn         = "id"
+	reviewContentColumn    = "content"
+	reviewIsApprovedColumn = "is_approved"
+	reviewUserEmailColumn  = "user_email"
+	reviewUserPhoneColumn  = "user_phone"
+	reviewRatingColumn     = "rating"
+	reviewBankIDColumn     = "bank_id"
+)
+
+const (
+	settingsTableName = "settings"
+
+	settingsIDColumn                     = "id"
+	settingsAutomoderationStrategyColumn = "automoderation_strategy"
+)

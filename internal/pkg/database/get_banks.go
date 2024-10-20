@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 
 	"banks-api/internal/pkg/database/schema"
 	"banks-api/internal/pkg/model"
@@ -23,7 +24,8 @@ func (r *BanksRepository) GetBanks(ctx context.Context, filters *model.BankFilte
 			bankDataColumn,
 			bankCreatedAtColumn,
 			bankUpdatedAtColumn,
-		).From(banksTableName)
+		).From(banksTableName).
+		OrderBy(fmt.Sprintf("%s DESC", bankIDColumn))
 
 	query = applyBanksFilter(query, filters)
 

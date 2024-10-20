@@ -19,14 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Banks_GetBanks_FullMethodName               = "/worker.Banks/GetBanks"
-	Banks_UpdateBank_FullMethodName             = "/worker.Banks/UpdateBank"
-	Banks_GetPossibleBanks_FullMethodName       = "/worker.Banks/GetPossibleBanks"
-	Banks_RequestBankInformation_FullMethodName = "/worker.Banks/RequestBankInformation"
-	Banks_RequestTranslationText_FullMethodName = "/worker.Banks/RequestTranslationText"
-	Banks_GetTranslationText_FullMethodName     = "/worker.Banks/GetTranslationText"
-	Banks_CreateTranslationText_FullMethodName  = "/worker.Banks/CreateTranslationText"
-	Banks_GetTranslations_FullMethodName        = "/worker.Banks/GetTranslations"
+	Banks_GetBanks_FullMethodName                     = "/worker.Banks/GetBanks"
+	Banks_UpdateBank_FullMethodName                   = "/worker.Banks/UpdateBank"
+	Banks_GetPossibleBanks_FullMethodName             = "/worker.Banks/GetPossibleBanks"
+	Banks_RequestBankInformation_FullMethodName       = "/worker.Banks/RequestBankInformation"
+	Banks_RequestTranslationText_FullMethodName       = "/worker.Banks/RequestTranslationText"
+	Banks_GetTranslationText_FullMethodName           = "/worker.Banks/GetTranslationText"
+	Banks_CreateTranslationText_FullMethodName        = "/worker.Banks/CreateTranslationText"
+	Banks_GetTranslations_FullMethodName              = "/worker.Banks/GetTranslations"
+	Banks_GetReviews_FullMethodName                   = "/worker.Banks/GetReviews"
+	Banks_CreateReview_FullMethodName                 = "/worker.Banks/CreateReview"
+	Banks_UpdateReview_FullMethodName                 = "/worker.Banks/UpdateReview"
+	Banks_UpdateAutomoderationStrategy_FullMethodName = "/worker.Banks/UpdateAutomoderationStrategy"
 )
 
 // BanksClient is the client API for Banks service.
@@ -41,6 +45,10 @@ type BanksClient interface {
 	GetTranslationText(ctx context.Context, in *GetTranslationTextRequest, opts ...grpc.CallOption) (*GetTranslationTextResponse, error)
 	CreateTranslationText(ctx context.Context, in *CreateTranslationTextRequest, opts ...grpc.CallOption) (*CreateTranslationTextResponse, error)
 	GetTranslations(ctx context.Context, in *GetTranslationsRequest, opts ...grpc.CallOption) (*GetTranslationsResponse, error)
+	GetReviews(ctx context.Context, in *GetReviewsRequest, opts ...grpc.CallOption) (*GetReviewsResponse, error)
+	CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error)
+	UpdateReview(ctx context.Context, in *UpdateReviewRequest, opts ...grpc.CallOption) (*UpdateReviewResponse, error)
+	UpdateAutomoderationStrategy(ctx context.Context, in *UpdateAutomoderationStrategyRequest, opts ...grpc.CallOption) (*UpdateAutomoderationStrategyResponse, error)
 }
 
 type banksClient struct {
@@ -131,6 +139,46 @@ func (c *banksClient) GetTranslations(ctx context.Context, in *GetTranslationsRe
 	return out, nil
 }
 
+func (c *banksClient) GetReviews(ctx context.Context, in *GetReviewsRequest, opts ...grpc.CallOption) (*GetReviewsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetReviewsResponse)
+	err := c.cc.Invoke(ctx, Banks_GetReviews_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateReviewResponse)
+	err := c.cc.Invoke(ctx, Banks_CreateReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) UpdateReview(ctx context.Context, in *UpdateReviewRequest, opts ...grpc.CallOption) (*UpdateReviewResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateReviewResponse)
+	err := c.cc.Invoke(ctx, Banks_UpdateReview_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) UpdateAutomoderationStrategy(ctx context.Context, in *UpdateAutomoderationStrategyRequest, opts ...grpc.CallOption) (*UpdateAutomoderationStrategyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateAutomoderationStrategyResponse)
+	err := c.cc.Invoke(ctx, Banks_UpdateAutomoderationStrategy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BanksServer is the server API for Banks service.
 // All implementations must embed UnimplementedBanksServer
 // for forward compatibility.
@@ -143,6 +191,10 @@ type BanksServer interface {
 	GetTranslationText(context.Context, *GetTranslationTextRequest) (*GetTranslationTextResponse, error)
 	CreateTranslationText(context.Context, *CreateTranslationTextRequest) (*CreateTranslationTextResponse, error)
 	GetTranslations(context.Context, *GetTranslationsRequest) (*GetTranslationsResponse, error)
+	GetReviews(context.Context, *GetReviewsRequest) (*GetReviewsResponse, error)
+	CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error)
+	UpdateReview(context.Context, *UpdateReviewRequest) (*UpdateReviewResponse, error)
+	UpdateAutomoderationStrategy(context.Context, *UpdateAutomoderationStrategyRequest) (*UpdateAutomoderationStrategyResponse, error)
 	mustEmbedUnimplementedBanksServer()
 }
 
@@ -176,6 +228,18 @@ func (UnimplementedBanksServer) CreateTranslationText(context.Context, *CreateTr
 }
 func (UnimplementedBanksServer) GetTranslations(context.Context, *GetTranslationsRequest) (*GetTranslationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranslations not implemented")
+}
+func (UnimplementedBanksServer) GetReviews(context.Context, *GetReviewsRequest) (*GetReviewsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReviews not implemented")
+}
+func (UnimplementedBanksServer) CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateReview not implemented")
+}
+func (UnimplementedBanksServer) UpdateReview(context.Context, *UpdateReviewRequest) (*UpdateReviewResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReview not implemented")
+}
+func (UnimplementedBanksServer) UpdateAutomoderationStrategy(context.Context, *UpdateAutomoderationStrategyRequest) (*UpdateAutomoderationStrategyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAutomoderationStrategy not implemented")
 }
 func (UnimplementedBanksServer) mustEmbedUnimplementedBanksServer() {}
 func (UnimplementedBanksServer) testEmbeddedByValue()               {}
@@ -342,6 +406,78 @@ func _Banks_GetTranslations_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Banks_GetReviews_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReviewsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).GetReviews(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_GetReviews_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).GetReviews(ctx, req.(*GetReviewsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_CreateReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).CreateReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_CreateReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).CreateReview(ctx, req.(*CreateReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_UpdateReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateReviewRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).UpdateReview(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_UpdateReview_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).UpdateReview(ctx, req.(*UpdateReviewRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_UpdateAutomoderationStrategy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAutomoderationStrategyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).UpdateAutomoderationStrategy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_UpdateAutomoderationStrategy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).UpdateAutomoderationStrategy(ctx, req.(*UpdateAutomoderationStrategyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Banks_ServiceDesc is the grpc.ServiceDesc for Banks service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -380,6 +516,22 @@ var Banks_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTranslations",
 			Handler:    _Banks_GetTranslations_Handler,
+		},
+		{
+			MethodName: "GetReviews",
+			Handler:    _Banks_GetReviews_Handler,
+		},
+		{
+			MethodName: "CreateReview",
+			Handler:    _Banks_CreateReview_Handler,
+		},
+		{
+			MethodName: "UpdateReview",
+			Handler:    _Banks_UpdateReview_Handler,
+		},
+		{
+			MethodName: "UpdateAutomoderationStrategy",
+			Handler:    _Banks_UpdateAutomoderationStrategy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

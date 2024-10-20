@@ -63,6 +63,34 @@ service Banks {
       body: "*"
     };
   };
+
+  rpc GetReviews(GetReviewsRequest) returns (GetReviewsResponse) {
+    option (google.api.http) = {
+      post: "/v1/reviews/get-list"
+      body: "*"
+    };
+  };
+
+  rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {
+    option (google.api.http) = {
+      post: "/v1/reviews/create"
+      body: "*"
+    };
+  };
+
+  rpc UpdateReview(UpdateReviewRequest) returns (UpdateReviewResponse) {
+    option (google.api.http) = {
+      post: "/v1/reviews/update"
+      body: "*"
+    };
+  };
+
+  rpc UpdateAutomoderationStrategy(UpdateAutomoderationStrategyRequest) returns (UpdateAutomoderationStrategyResponse) {
+    option (google.api.http) = {
+      post: "/v1/automoderation/update"
+      body: "*"
+    };
+  };
 }
 
 message Bank {
@@ -167,3 +195,41 @@ message GetTranslationsResponse {
   repeated Translation translations = 1 [json_name = "translations"];
 }
 
+message Review {
+  int64 id = 1 [json_name = "id"];
+  string content = 2 [json_name = "content"];
+  bool is_approved = 3 [json_name = "is_approved"];
+  string user_email = 4 [json_name = "user_email"];
+  string user_phone = 5 [json_name = "user_phone"];
+  int64 rating = 6 [json_name = "rating"];
+  int64 bank_id = 7 [json_name = "bank_id"];
+}
+
+message GetReviewsRequest {}
+
+message GetReviewsResponse {
+  repeated Review reviews = 1 [json_name = "reviews"];
+}
+
+message CreateReviewRequest {
+  string content = 1 [json_name = "content"];
+  string user_email = 2 [json_name = "user_email"];
+  string user_phone = 3 [json_name = "user_phone"];
+  int64 rating = 4 [json_name = "rating"];
+  int64 bank_id = 5 [json_name = "bank_id"];
+}
+
+message CreateReviewResponse {}
+
+message UpdateReviewRequest {
+  int64 id = 1 [json_name = "id"];
+  bool is_approved = 2 [json_name = "is_approved"];
+}
+
+message UpdateReviewResponse {}
+
+message UpdateAutomoderationStrategyRequest {
+  bool automoderation_enable = 1 [json_name = "automoderation_enable"];
+}
+
+message UpdateAutomoderationStrategyResponse {}

@@ -10,30 +10,32 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (r *BanksRepository) GetTranslations(ctx context.Context) ([]schema.Translation, error) {
+func (r *BanksRepository) GetReviews(ctx context.Context) ([]schema.Review, error) {
 	query := psql.
 		Select(
-			translationIDColumn,
-			translationLexemeColumn,
-			translationTranslatedLexemeColumn,
-			translationSourceLanguageColumn,
-			translationTargetLanguageColumn,
-		).From(translationsTableName).
-		OrderBy(fmt.Sprintf("%s DESC", translationIDColumn))
+			reviewIDColumn,
+			reviewContentColumn,
+			reviewIsApprovedColumn,
+			reviewUserEmailColumn,
+			reviewUserPhoneColumn,
+			reviewRatingColumn,
+			reviewBankIDColumn,
+		).From(reviewsTableName).
+		OrderBy(fmt.Sprintf("%s DESC", reviewIDColumn))
 
 	rawSQL, args, err := query.ToSql()
 	if err != nil {
 		return nil, errors.Wrap(err, "GetBanks.ToSql")
 	}
 
-	var res []schema.Translation
+	var res []schema.Review
 	err = pgxscan.Select(ctx, r.pool, &res, rawSQL, args...)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
 			return nil, nil
 		}
 
-		return nil, errors.Wrap(err, "GetTranslations.Select")
+		return nil, errors.Wrap(err, "GetReviews.Select")
 	}
 
 	return res, nil

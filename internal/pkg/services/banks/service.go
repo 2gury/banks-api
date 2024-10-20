@@ -19,6 +19,12 @@ type BanksRepository interface {
 	GetTranslationByText(ctx context.Context, language, text string) (*schema.Translation, error)
 	CreateTranslation(ctx context.Context, translation *model.Translation) (int64, error)
 	GetTranslations(ctx context.Context) ([]schema.Translation, error)
+
+	GetReviews(ctx context.Context) ([]schema.Review, error)
+	CreateReview(ctx context.Context, review *model.Review) (int64, error)
+	UpdateAutomoderationStrategy(ctx context.Context, automoderationEnable bool) error
+	UpdateReview(ctx context.Context, reviewID int64, isApproved bool) error
+	GetAutomoderationStrategy(ctx context.Context) (*schema.Settings, error)
 }
 
 type TranslatorService interface {
@@ -32,6 +38,7 @@ type LeadgidService interface {
 
 type ChatGPTService interface {
 	GrabText(ctx context.Context, text string) (*model.BankChatGPTInfo, error)
+	IsValidReview(ctx context.Context, content string) (bool, error)
 }
 
 type BanksHandler struct {
