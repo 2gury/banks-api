@@ -9,7 +9,7 @@ PACKAGE=banks-api/cmd/app
 all: format build test lint
 
 build: bindir
-	go build -ldflags "-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=warn" -o ${BINDIR}/app ${PACKAGE}
+	GOOS=linux GOARCH=amd64 go build -ldflags "-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=warn" -o ${BINDIR}/app ${PACKAGE}
 
 test:
 	GOLANG_PROTOBUF_REGISTRATION_CONFLICT=warn go test ./...
@@ -82,3 +82,10 @@ generate-banks-api: bin vendor-proto/google/api vendor-proto/google/protobuf
 	--grpc-gateway_out pkg/banks --grpc-gateway_opt paths=source_relative \
 	--validate_out="lang=go,paths=source_relative:pkg/banks" \
 	api/banks/banks.proto
+
+build-all:
+	GOOS=linux GOARCH=amd64 make build
+
+run-all: build-all
+	sudo docker compose up --force-recreate --build
+	#docker-compose up --force-recreate --build

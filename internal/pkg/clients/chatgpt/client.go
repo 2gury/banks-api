@@ -73,3 +73,32 @@ func (gpt *ChatgptClient) GrabText(ctx context.Context, text string) (*model.Ban
 
 	return &convertedInfo, nil
 }
+
+func (gpt *ChatgptClient) IsValidReview(ctx context.Context, content string) (bool, error) {
+	res, err := gpt.cli.SimpleSend(ctx, fmt.Sprintf(`
+		Провалидируй следующее ревью по следующим правилам:
+		1. Не должно быть оскорблений
+		2. Не должно быть мата
+		3. Не должно быть призыва к насилию
+		3. Не должно быть рекламы
+		4. Не должно быть непонятных символов
+
+		Если по отзыву не понятно валиден ли они или нет, есть сомнения, то отклоняй такой отзыв. 
+		В ответ пришли: "true", "false"
+		Если отзыв вылиден, то true, если не прошел по правилам то false
+		
+		Текст отзыва: "%s"`, content))
+	if err != nil {
+		return false, err
+	}
+
+	if len(res.Choices) == 0 {
+		return false, fmt.Errorf("error zero choices from chatgpt")
+	}
+
+	if res.Choices[0].Message.Content == "true" {
+		return true, nil
+	}
+
+	return false, nil
+}

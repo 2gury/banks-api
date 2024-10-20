@@ -21,3 +21,26 @@ services:
       timeout: 5s
       retries: 5
 
+  migrations-banks:
+    build:
+      context: ./migration
+      dockerfile: Dockerfile
+    container_name: migrations-banks
+    depends_on:
+      banks-db:
+        condition: service_healthy
+    volumes:
+      - ./migration:/migration:rw
+
+  banks-api:
+    image: banks
+    build: ./
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - migrations-banks
+    restart: unless-stopped
+    volumes:
+      - ./data:/data:rw
+

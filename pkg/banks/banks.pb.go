@@ -1065,6 +1065,481 @@ func (x *GetTranslationsResponse) GetTranslations() []*Translation {
 	return nil
 }
 
+type Review struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id         int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Content    string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	IsApproved bool   `protobuf:"varint,3,opt,name=is_approved,proto3" json:"is_approved,omitempty"`
+	UserEmail  string `protobuf:"bytes,4,opt,name=user_email,proto3" json:"user_email,omitempty"`
+	UserPhone  string `protobuf:"bytes,5,opt,name=user_phone,proto3" json:"user_phone,omitempty"`
+	Rating     int64  `protobuf:"varint,6,opt,name=rating,proto3" json:"rating,omitempty"`
+	BankId     int64  `protobuf:"varint,7,opt,name=bank_id,proto3" json:"bank_id,omitempty"`
+}
+
+func (x *Review) Reset() {
+	*x = Review{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Review) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Review) ProtoMessage() {}
+
+func (x *Review) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Review.ProtoReflect.Descriptor instead.
+func (*Review) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *Review) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Review) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *Review) GetIsApproved() bool {
+	if x != nil {
+		return x.IsApproved
+	}
+	return false
+}
+
+func (x *Review) GetUserEmail() string {
+	if x != nil {
+		return x.UserEmail
+	}
+	return ""
+}
+
+func (x *Review) GetUserPhone() string {
+	if x != nil {
+		return x.UserPhone
+	}
+	return ""
+}
+
+func (x *Review) GetRating() int64 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
+}
+
+func (x *Review) GetBankId() int64 {
+	if x != nil {
+		return x.BankId
+	}
+	return 0
+}
+
+type GetReviewsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetReviewsRequest) Reset() {
+	*x = GetReviewsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetReviewsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReviewsRequest) ProtoMessage() {}
+
+func (x *GetReviewsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReviewsRequest.ProtoReflect.Descriptor instead.
+func (*GetReviewsRequest) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{19}
+}
+
+type GetReviewsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Reviews []*Review `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
+}
+
+func (x *GetReviewsResponse) Reset() {
+	*x = GetReviewsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetReviewsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReviewsResponse) ProtoMessage() {}
+
+func (x *GetReviewsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReviewsResponse.ProtoReflect.Descriptor instead.
+func (*GetReviewsResponse) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetReviewsResponse) GetReviews() []*Review {
+	if x != nil {
+		return x.Reviews
+	}
+	return nil
+}
+
+type CreateReviewRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Content   string `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	UserEmail string `protobuf:"bytes,2,opt,name=user_email,proto3" json:"user_email,omitempty"`
+	UserPhone string `protobuf:"bytes,3,opt,name=user_phone,proto3" json:"user_phone,omitempty"`
+	Rating    int64  `protobuf:"varint,4,opt,name=rating,proto3" json:"rating,omitempty"`
+	BankId    int64  `protobuf:"varint,5,opt,name=bank_id,proto3" json:"bank_id,omitempty"`
+}
+
+func (x *CreateReviewRequest) Reset() {
+	*x = CreateReviewRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReviewRequest) ProtoMessage() {}
+
+func (x *CreateReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReviewRequest.ProtoReflect.Descriptor instead.
+func (*CreateReviewRequest) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CreateReviewRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetUserEmail() string {
+	if x != nil {
+		return x.UserEmail
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetUserPhone() string {
+	if x != nil {
+		return x.UserPhone
+	}
+	return ""
+}
+
+func (x *CreateReviewRequest) GetRating() int64 {
+	if x != nil {
+		return x.Rating
+	}
+	return 0
+}
+
+func (x *CreateReviewRequest) GetBankId() int64 {
+	if x != nil {
+		return x.BankId
+	}
+	return 0
+}
+
+type CreateReviewResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CreateReviewResponse) Reset() {
+	*x = CreateReviewResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReviewResponse) ProtoMessage() {}
+
+func (x *CreateReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReviewResponse.ProtoReflect.Descriptor instead.
+func (*CreateReviewResponse) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{22}
+}
+
+type UpdateReviewRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id         int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	IsApproved bool  `protobuf:"varint,2,opt,name=is_approved,proto3" json:"is_approved,omitempty"`
+}
+
+func (x *UpdateReviewRequest) Reset() {
+	*x = UpdateReviewRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateReviewRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateReviewRequest) ProtoMessage() {}
+
+func (x *UpdateReviewRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateReviewRequest.ProtoReflect.Descriptor instead.
+func (*UpdateReviewRequest) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *UpdateReviewRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateReviewRequest) GetIsApproved() bool {
+	if x != nil {
+		return x.IsApproved
+	}
+	return false
+}
+
+type UpdateReviewResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateReviewResponse) Reset() {
+	*x = UpdateReviewResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateReviewResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateReviewResponse) ProtoMessage() {}
+
+func (x *UpdateReviewResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateReviewResponse.ProtoReflect.Descriptor instead.
+func (*UpdateReviewResponse) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{24}
+}
+
+type UpdateAutomoderationStrategyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AutomoderationEnable bool `protobuf:"varint,1,opt,name=automoderation_enable,proto3" json:"automoderation_enable,omitempty"`
+}
+
+func (x *UpdateAutomoderationStrategyRequest) Reset() {
+	*x = UpdateAutomoderationStrategyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAutomoderationStrategyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAutomoderationStrategyRequest) ProtoMessage() {}
+
+func (x *UpdateAutomoderationStrategyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAutomoderationStrategyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAutomoderationStrategyRequest) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *UpdateAutomoderationStrategyRequest) GetAutomoderationEnable() bool {
+	if x != nil {
+		return x.AutomoderationEnable
+	}
+	return false
+}
+
+type UpdateAutomoderationStrategyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateAutomoderationStrategyResponse) Reset() {
+	*x = UpdateAutomoderationStrategyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_banks_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAutomoderationStrategyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAutomoderationStrategyResponse) ProtoMessage() {}
+
+func (x *UpdateAutomoderationStrategyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_banks_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAutomoderationStrategyResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAutomoderationStrategyResponse) Descriptor() ([]byte, []int) {
+	return file_banks_proto_rawDescGZIP(), []int{26}
+}
+
 type GetPossibleBanksResponse_PossibleBank struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1079,7 +1554,7 @@ type GetPossibleBanksResponse_PossibleBank struct {
 func (x *GetPossibleBanksResponse_PossibleBank) Reset() {
 	*x = GetPossibleBanksResponse_PossibleBank{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_banks_proto_msgTypes[18]
+		mi := &file_banks_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1092,7 +1567,7 @@ func (x *GetPossibleBanksResponse_PossibleBank) String() string {
 func (*GetPossibleBanksResponse_PossibleBank) ProtoMessage() {}
 
 func (x *GetPossibleBanksResponse_PossibleBank) ProtoReflect() protoreflect.Message {
-	mi := &file_banks_proto_msgTypes[18]
+	mi := &file_banks_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1275,7 +1750,51 @@ var file_banks_proto_rawDesc = []byte{
 	0x37, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
 	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x54,
 	0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0c, 0x74, 0x72, 0x61, 0x6e,
-	0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x32, 0xfe, 0x07, 0x0a, 0x05, 0x42, 0x61, 0x6e,
+	0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xc6, 0x01, 0x0a, 0x06, 0x52, 0x65, 0x76,
+	0x69, 0x65, 0x77, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x02, 0x69, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x20, 0x0a,
+	0x0b, 0x69, 0x73, 0x5f, 0x61, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x5f, 0x61, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x64, 0x12,
+	0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12,
+	0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x18, 0x0a, 0x07, 0x62, 0x61, 0x6e, 0x6b, 0x5f,
+	0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x69,
+	0x64, 0x22, 0x13, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x3e, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x52, 0x65, 0x76,
+	0x69, 0x65, 0x77, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x07,
+	0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e,
+	0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x07, 0x72,
+	0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x22, 0xa1, 0x01, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18,
+	0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x75, 0x73,
+	0x65, 0x72, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x75, 0x73,
+	0x65, 0x72, 0x5f, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x61, 0x74, 0x69,
+	0x6e, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67,
+	0x12, 0x18, 0x0a, 0x07, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x07, 0x62, 0x61, 0x6e, 0x6b, 0x5f, 0x69, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x47, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69,
+	0x65, 0x77, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x69, 0x73, 0x5f,
+	0x61, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0b,
+	0x69, 0x73, 0x5f, 0x61, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x5b, 0x0a, 0x23, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74,
+	0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x72, 0x61, 0x74,
+	0x65, 0x67, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x15, 0x61, 0x75,
+	0x74, 0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x65, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x15, 0x61, 0x75, 0x74, 0x6f, 0x6d,
+	0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x22, 0x26, 0x0a, 0x24, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x6f,
+	0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xda, 0x0b, 0x0a, 0x05, 0x42, 0x61, 0x6e,
 	0x6b, 0x73, 0x12, 0x57, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x73, 0x12, 0x17,
 	0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6e, 0x6b, 0x73,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72,
@@ -1339,9 +1858,39 @@ var file_banks_proto_rawDesc = []byte{
 	0x65, 0x74, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x21, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1b, 0x3a, 0x01,
 	0x2a, 0x22, 0x16, 0x2f, 0x76, 0x31, 0x2f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65,
-	0x2f, 0x67, 0x65, 0x74, 0x2d, 0x6c, 0x69, 0x73, 0x74, 0x42, 0x15, 0x5a, 0x13, 0x62, 0x61, 0x6e,
-	0x6b, 0x73, 0x2d, 0x61, 0x70, 0x69, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x73,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2f, 0x67, 0x65, 0x74, 0x2d, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x64, 0x0a, 0x0a, 0x47, 0x65, 0x74,
+	0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x12, 0x19, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72,
+	0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x52,
+	0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1f,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x3a, 0x01, 0x2a, 0x22, 0x14, 0x2f, 0x76, 0x31, 0x2f, 0x72,
+	0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x2f, 0x67, 0x65, 0x74, 0x2d, 0x6c, 0x69, 0x73, 0x74, 0x12,
+	0x68, 0x0a, 0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x12,
+	0x1b, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52,
+	0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x77,
+	0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69,
+	0x65, 0x77, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1d, 0x82, 0xd3, 0xe4, 0x93,
+	0x02, 0x17, 0x3a, 0x01, 0x2a, 0x22, 0x12, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x65, 0x76, 0x69, 0x65,
+	0x77, 0x73, 0x2f, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x68, 0x0a, 0x0c, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x12, 0x1b, 0x2e, 0x77, 0x6f, 0x72, 0x6b,
+	0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1d, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x17, 0x3a, 0x01, 0x2a, 0x22,
+	0x12, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x73, 0x2f, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x12, 0x9f, 0x01, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75,
+	0x74, 0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x72, 0x61,
+	0x74, 0x65, 0x67, 0x79, 0x12, 0x2b, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x53, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2c, 0x2e, 0x77, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53,
+	0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x24, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1e, 0x3a, 0x01, 0x2a, 0x22, 0x19, 0x2f, 0x76, 0x31, 0x2f,
+	0x61, 0x75, 0x74, 0x6f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x42, 0x15, 0x5a, 0x13, 0x62, 0x61, 0x6e, 0x6b, 0x73, 0x2d, 0x61,
+	0x70, 0x69, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x62, 0x61, 0x6e, 0x6b, 0x73, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1356,7 +1905,7 @@ func file_banks_proto_rawDescGZIP() []byte {
 	return file_banks_proto_rawDescData
 }
 
-var file_banks_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_banks_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_banks_proto_goTypes = []any{
 	(*Bank)(nil),                                  // 0: worker.Bank
 	(*GetBanksRequest)(nil),                       // 1: worker.GetBanksRequest
@@ -1376,41 +1925,59 @@ var file_banks_proto_goTypes = []any{
 	(*CreateTranslationTextResponse)(nil),         // 15: worker.CreateTranslationTextResponse
 	(*GetTranslationsRequest)(nil),                // 16: worker.GetTranslationsRequest
 	(*GetTranslationsResponse)(nil),               // 17: worker.GetTranslationsResponse
-	(*GetPossibleBanksResponse_PossibleBank)(nil), // 18: worker.GetPossibleBanksResponse.PossibleBank
-	(*timestamppb.Timestamp)(nil),                 // 19: google.protobuf.Timestamp
+	(*Review)(nil),                                // 18: worker.Review
+	(*GetReviewsRequest)(nil),                     // 19: worker.GetReviewsRequest
+	(*GetReviewsResponse)(nil),                    // 20: worker.GetReviewsResponse
+	(*CreateReviewRequest)(nil),                   // 21: worker.CreateReviewRequest
+	(*CreateReviewResponse)(nil),                  // 22: worker.CreateReviewResponse
+	(*UpdateReviewRequest)(nil),                   // 23: worker.UpdateReviewRequest
+	(*UpdateReviewResponse)(nil),                  // 24: worker.UpdateReviewResponse
+	(*UpdateAutomoderationStrategyRequest)(nil),   // 25: worker.UpdateAutomoderationStrategyRequest
+	(*UpdateAutomoderationStrategyResponse)(nil),  // 26: worker.UpdateAutomoderationStrategyResponse
+	(*GetPossibleBanksResponse_PossibleBank)(nil), // 27: worker.GetPossibleBanksResponse.PossibleBank
+	(*timestamppb.Timestamp)(nil),                 // 28: google.protobuf.Timestamp
 }
 var file_banks_proto_depIdxs = []int32{
-	19, // 0: worker.Bank.created_at:type_name -> google.protobuf.Timestamp
-	19, // 1: worker.Bank.updated_at:type_name -> google.protobuf.Timestamp
+	28, // 0: worker.Bank.created_at:type_name -> google.protobuf.Timestamp
+	28, // 1: worker.Bank.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 2: worker.GetBanksResponse.banks:type_name -> worker.Bank
 	0,  // 3: worker.UpdateBankRequest.bank:type_name -> worker.Bank
-	18, // 4: worker.GetPossibleBanksResponse.banks:type_name -> worker.GetPossibleBanksResponse.PossibleBank
+	27, // 4: worker.GetPossibleBanksResponse.banks:type_name -> worker.GetPossibleBanksResponse.PossibleBank
 	0,  // 5: worker.RequestBankInformationResponse.bank:type_name -> worker.Bank
 	9,  // 6: worker.GetTranslationTextResponse.translation:type_name -> worker.Translation
 	9,  // 7: worker.CreateTranslationTextRequest.translation:type_name -> worker.Translation
 	9,  // 8: worker.CreateTranslationTextResponse.translation:type_name -> worker.Translation
 	9,  // 9: worker.GetTranslationsResponse.translations:type_name -> worker.Translation
-	1,  // 10: worker.Banks.GetBanks:input_type -> worker.GetBanksRequest
-	3,  // 11: worker.Banks.UpdateBank:input_type -> worker.UpdateBankRequest
-	5,  // 12: worker.Banks.GetPossibleBanks:input_type -> worker.GetPossibleBanksRequest
-	7,  // 13: worker.Banks.RequestBankInformation:input_type -> worker.RequestBankInformationRequest
-	10, // 14: worker.Banks.RequestTranslationText:input_type -> worker.RequestTranslationTextRequest
-	12, // 15: worker.Banks.GetTranslationText:input_type -> worker.GetTranslationTextRequest
-	14, // 16: worker.Banks.CreateTranslationText:input_type -> worker.CreateTranslationTextRequest
-	16, // 17: worker.Banks.GetTranslations:input_type -> worker.GetTranslationsRequest
-	2,  // 18: worker.Banks.GetBanks:output_type -> worker.GetBanksResponse
-	4,  // 19: worker.Banks.UpdateBank:output_type -> worker.UpdateBankResponse
-	6,  // 20: worker.Banks.GetPossibleBanks:output_type -> worker.GetPossibleBanksResponse
-	8,  // 21: worker.Banks.RequestBankInformation:output_type -> worker.RequestBankInformationResponse
-	11, // 22: worker.Banks.RequestTranslationText:output_type -> worker.RequestTranslationTextResponse
-	13, // 23: worker.Banks.GetTranslationText:output_type -> worker.GetTranslationTextResponse
-	15, // 24: worker.Banks.CreateTranslationText:output_type -> worker.CreateTranslationTextResponse
-	17, // 25: worker.Banks.GetTranslations:output_type -> worker.GetTranslationsResponse
-	18, // [18:26] is the sub-list for method output_type
-	10, // [10:18] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	18, // 10: worker.GetReviewsResponse.reviews:type_name -> worker.Review
+	1,  // 11: worker.Banks.GetBanks:input_type -> worker.GetBanksRequest
+	3,  // 12: worker.Banks.UpdateBank:input_type -> worker.UpdateBankRequest
+	5,  // 13: worker.Banks.GetPossibleBanks:input_type -> worker.GetPossibleBanksRequest
+	7,  // 14: worker.Banks.RequestBankInformation:input_type -> worker.RequestBankInformationRequest
+	10, // 15: worker.Banks.RequestTranslationText:input_type -> worker.RequestTranslationTextRequest
+	12, // 16: worker.Banks.GetTranslationText:input_type -> worker.GetTranslationTextRequest
+	14, // 17: worker.Banks.CreateTranslationText:input_type -> worker.CreateTranslationTextRequest
+	16, // 18: worker.Banks.GetTranslations:input_type -> worker.GetTranslationsRequest
+	19, // 19: worker.Banks.GetReviews:input_type -> worker.GetReviewsRequest
+	21, // 20: worker.Banks.CreateReview:input_type -> worker.CreateReviewRequest
+	23, // 21: worker.Banks.UpdateReview:input_type -> worker.UpdateReviewRequest
+	25, // 22: worker.Banks.UpdateAutomoderationStrategy:input_type -> worker.UpdateAutomoderationStrategyRequest
+	2,  // 23: worker.Banks.GetBanks:output_type -> worker.GetBanksResponse
+	4,  // 24: worker.Banks.UpdateBank:output_type -> worker.UpdateBankResponse
+	6,  // 25: worker.Banks.GetPossibleBanks:output_type -> worker.GetPossibleBanksResponse
+	8,  // 26: worker.Banks.RequestBankInformation:output_type -> worker.RequestBankInformationResponse
+	11, // 27: worker.Banks.RequestTranslationText:output_type -> worker.RequestTranslationTextResponse
+	13, // 28: worker.Banks.GetTranslationText:output_type -> worker.GetTranslationTextResponse
+	15, // 29: worker.Banks.CreateTranslationText:output_type -> worker.CreateTranslationTextResponse
+	17, // 30: worker.Banks.GetTranslations:output_type -> worker.GetTranslationsResponse
+	20, // 31: worker.Banks.GetReviews:output_type -> worker.GetReviewsResponse
+	22, // 32: worker.Banks.CreateReview:output_type -> worker.CreateReviewResponse
+	24, // 33: worker.Banks.UpdateReview:output_type -> worker.UpdateReviewResponse
+	26, // 34: worker.Banks.UpdateAutomoderationStrategy:output_type -> worker.UpdateAutomoderationStrategyResponse
+	23, // [23:35] is the sub-list for method output_type
+	11, // [11:23] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_banks_proto_init() }
@@ -1636,6 +2203,114 @@ func file_banks_proto_init() {
 			}
 		}
 		file_banks_proto_msgTypes[18].Exporter = func(v any, i int) any {
+			switch v := v.(*Review); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[19].Exporter = func(v any, i int) any {
+			switch v := v.(*GetReviewsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[20].Exporter = func(v any, i int) any {
+			switch v := v.(*GetReviewsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[21].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateReviewRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[22].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateReviewResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[23].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateReviewRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[24].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateReviewResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[25].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateAutomoderationStrategyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[26].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateAutomoderationStrategyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_banks_proto_msgTypes[27].Exporter = func(v any, i int) any {
 			switch v := v.(*GetPossibleBanksResponse_PossibleBank); i {
 			case 0:
 				return &v.state
@@ -1654,7 +2329,7 @@ func file_banks_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_banks_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
