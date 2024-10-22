@@ -3,6 +3,7 @@ package mappers
 import (
 	"banks-api/internal/pkg/model"
 	pbbanks "banks-api/pkg/banks"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func ModelToPBReview(review *model.Review) *pbbanks.Review {
@@ -18,6 +19,9 @@ func ModelToPBReview(review *model.Review) *pbbanks.Review {
 		UserPhone:  review.UserPhone,
 		Rating:     review.Rating,
 		BankId:     review.BankID,
+		UserName:   review.UserName,
+		Data:       timestamppb.New(review.Date),
+		Bank:       review.BankName,
 	}
 }
 

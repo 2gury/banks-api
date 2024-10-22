@@ -2264,6 +2264,39 @@ func (m *Review) validate(all bool) error {
 
 	// no validation rules for BankId
 
+	// no validation rules for UserName
+
+	// no validation rules for Bank
+
+	if all {
+		switch v := interface{}(m.GetData()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ReviewValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ReviewValidationError{
+					field:  "Data",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReviewValidationError{
+				field:  "Data",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if len(errors) > 0 {
 		return ReviewMultiError(errors)
 	}
@@ -2610,6 +2643,8 @@ func (m *CreateReviewRequest) validate(all bool) error {
 	// no validation rules for Rating
 
 	// no validation rules for BankId
+
+	// no validation rules for UserName
 
 	if len(errors) > 0 {
 		return CreateReviewRequestMultiError(errors)

@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"time"
 
 	"banks-api/internal/pkg/model"
 	"github.com/pkg/errors"
@@ -16,14 +17,20 @@ func (r *BanksRepository) CreateReview(ctx context.Context, review *model.Review
 			reviewUserEmailColumn,
 			reviewUserPhoneColumn,
 			reviewRatingColumn,
-			reviewBankIDColumn).
+			reviewBankIDColumn,
+			reviewUserNameColumn,
+			reviewDateColumn,
+		).
 		Values(
 			review.Content,
 			review.IsApproved,
 			review.UserEmail,
 			review.UserPhone,
 			review.Rating,
-			review.BankID).
+			review.BankID,
+			review.UserName,
+			time.Now(),
+		).
 		Suffix(`RETURNING id;`)
 
 	rawSQL, args, err := query.ToSql()
