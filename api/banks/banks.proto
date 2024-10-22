@@ -203,6 +203,9 @@ message Review {
   string user_phone = 5 [json_name = "user_phone"];
   int64 rating = 6 [json_name = "rating"];
   int64 bank_id = 7 [json_name = "bank_id"];
+  string user_name = 8 [json_name = "user_name"];
+  string bank = 9 [json_name = "bank"];
+  google.protobuf.Timestamp data = 10 [json_name = "date"];
 }
 
 message GetReviewsRequest {}
@@ -217,6 +220,7 @@ message CreateReviewRequest {
   string user_phone = 3 [json_name = "user_phone"];
   int64 rating = 4 [json_name = "rating"];
   int64 bank_id = 5 [json_name = "bank_id"];
+  string user_name = 6 [json_name = "user_name"];
 }
 
 message CreateReviewResponse {}

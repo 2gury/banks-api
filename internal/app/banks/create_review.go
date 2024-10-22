@@ -13,6 +13,7 @@ func (w *BanksHandler) CreateReview(ctx context.Context, req *banks.CreateReview
 		UserPhone: req.GetUserPhone(),
 		Rating:    req.GetRating(),
 		BankID:    req.GetBankId(),
+		UserName:  req.GetUserName(),
 	}); err != nil {
 		return nil, err
 	}

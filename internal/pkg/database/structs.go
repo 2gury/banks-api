@@ -34,6 +34,8 @@ const (
 	reviewUserPhoneColumn  = "user_phone"
 	reviewRatingColumn     = "rating"
 	reviewBankIDColumn     = "bank_id"
+	reviewUserNameColumn   = "user_name"
+	reviewDateColumn       = "date"
 )
 
 const (

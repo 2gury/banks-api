@@ -8,7 +8,9 @@ CREATE TABLE reviews (
     user_email TEXT NOT NULL,
     user_phone TEXT NOT NULL,
     rating INT NOT NULL,
-    bank_id INT NOT NULL
+    bank_id INT NOT NULL,
+    user_name TEXT NOT NULL,
+    date TIMESTAMPTZ DEFAULT NOW() NOT NULL
 );
 -- +goose StatementEnd
 

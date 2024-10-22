@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
+	sq "github.com/Masterminds/squirrel"
 
 	"banks-api/internal/pkg/database/schema"
 	"github.com/georgysavva/scany/pgxscan"
@@ -20,7 +21,12 @@ func (r *BanksRepository) GetReviews(ctx context.Context) ([]schema.Review, erro
 			reviewUserPhoneColumn,
 			reviewRatingColumn,
 			reviewBankIDColumn,
+			reviewUserNameColumn,
+			reviewDateColumn,
 		).From(reviewsTableName).
+		Where(sq.Eq{
+			reviewIsApprovedColumn: false,
+		}).
 		OrderBy(fmt.Sprintf("%s DESC", reviewIDColumn))
 
 	rawSQL, args, err := query.ToSql()
