@@ -473,7 +473,10 @@ Response:
             "user_email": "test@mail.ru",
             "user_phone": "+893455474543",
             "rating": "4",
-            "bank_id": "12"
+            "bank_id": "12",
+            "user_name": "Бауржан",
+            "bank": "JetCarz KZ - CPS",
+            "date": "2024-10-22T16:13:33.676555Z"
         },
         {
             "id": "12",
@@ -482,7 +485,10 @@ Response:
             "user_email": "testing@mail.ru",
             "user_phone": "+892325474543",
             "rating": "1",
-            "bank_id": "23"
+            "bank_id": "23",
+            "user_name": "Бауржан",
+            "bank": "JetCarz KZ - CPS",
+            "date": "2024-10-22T16:13:33.676555Z"
         }
     ]
 }
@@ -500,7 +506,8 @@ Request:
     "user_email": "testing@mail.ru",
     "user_phone": "+892325474543",
     "rating": "1",
-    "bank_id": "23"
+    "bank_id": "23",
+    "user_name": "Бауржан"
 }
 ```
 
