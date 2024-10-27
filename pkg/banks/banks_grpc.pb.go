@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Banks_GetBanks_FullMethodName                     = "/worker.Banks/GetBanks"
 	Banks_UpdateBank_FullMethodName                   = "/worker.Banks/UpdateBank"
+	Banks_DeleteBank_FullMethodName                   = "/worker.Banks/DeleteBank"
 	Banks_GetPossibleBanks_FullMethodName             = "/worker.Banks/GetPossibleBanks"
 	Banks_RequestBankInformation_FullMethodName       = "/worker.Banks/RequestBankInformation"
 	Banks_RequestTranslationText_FullMethodName       = "/worker.Banks/RequestTranslationText"
@@ -39,6 +40,7 @@ const (
 type BanksClient interface {
 	GetBanks(ctx context.Context, in *GetBanksRequest, opts ...grpc.CallOption) (*GetBanksResponse, error)
 	UpdateBank(ctx context.Context, in *UpdateBankRequest, opts ...grpc.CallOption) (*UpdateBankResponse, error)
+	DeleteBank(ctx context.Context, in *DeleteBankRequest, opts ...grpc.CallOption) (*DeleteBankResponse, error)
 	GetPossibleBanks(ctx context.Context, in *GetPossibleBanksRequest, opts ...grpc.CallOption) (*GetPossibleBanksResponse, error)
 	RequestBankInformation(ctx context.Context, in *RequestBankInformationRequest, opts ...grpc.CallOption) (*RequestBankInformationResponse, error)
 	RequestTranslationText(ctx context.Context, in *RequestTranslationTextRequest, opts ...grpc.CallOption) (*RequestTranslationTextResponse, error)
@@ -73,6 +75,16 @@ func (c *banksClient) UpdateBank(ctx context.Context, in *UpdateBankRequest, opt
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateBankResponse)
 	err := c.cc.Invoke(ctx, Banks_UpdateBank_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *banksClient) DeleteBank(ctx context.Context, in *DeleteBankRequest, opts ...grpc.CallOption) (*DeleteBankResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteBankResponse)
+	err := c.cc.Invoke(ctx, Banks_DeleteBank_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -185,6 +197,7 @@ func (c *banksClient) UpdateAutomoderationStrategy(ctx context.Context, in *Upda
 type BanksServer interface {
 	GetBanks(context.Context, *GetBanksRequest) (*GetBanksResponse, error)
 	UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error)
+	DeleteBank(context.Context, *DeleteBankRequest) (*DeleteBankResponse, error)
 	GetPossibleBanks(context.Context, *GetPossibleBanksRequest) (*GetPossibleBanksResponse, error)
 	RequestBankInformation(context.Context, *RequestBankInformationRequest) (*RequestBankInformationResponse, error)
 	RequestTranslationText(context.Context, *RequestTranslationTextRequest) (*RequestTranslationTextResponse, error)
@@ -210,6 +223,9 @@ func (UnimplementedBanksServer) GetBanks(context.Context, *GetBanksRequest) (*Ge
 }
 func (UnimplementedBanksServer) UpdateBank(context.Context, *UpdateBankRequest) (*UpdateBankResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBank not implemented")
+}
+func (UnimplementedBanksServer) DeleteBank(context.Context, *DeleteBankRequest) (*DeleteBankResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBank not implemented")
 }
 func (UnimplementedBanksServer) GetPossibleBanks(context.Context, *GetPossibleBanksRequest) (*GetPossibleBanksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPossibleBanks not implemented")
@@ -294,6 +310,24 @@ func _Banks_UpdateBank_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BanksServer).UpdateBank(ctx, req.(*UpdateBankRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Banks_DeleteBank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBankRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BanksServer).DeleteBank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Banks_DeleteBank_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BanksServer).DeleteBank(ctx, req.(*DeleteBankRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -492,6 +526,10 @@ var Banks_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateBank",
 			Handler:    _Banks_UpdateBank_Handler,
+		},
+		{
+			MethodName: "DeleteBank",
+			Handler:    _Banks_DeleteBank_Handler,
 		},
 		{
 			MethodName: "GetPossibleBanks",
