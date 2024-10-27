@@ -381,6 +381,24 @@ Response:
 
 ---
 
+Ручка удаления банка по id
+POST localhost:8080/v1/banks/delete
+
+Request:
+```
+{
+    "id": 23
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+
 Ручка получения возможных банковский предложений
 POST localhost:8080/v1/banks/get-possible
 
