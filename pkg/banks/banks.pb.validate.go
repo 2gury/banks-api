@@ -692,6 +692,212 @@ var _ interface {
 	ErrorName() string
 } = UpdateBankResponseValidationError{}
 
+// Validate checks the field values on DeleteBankRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *DeleteBankRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteBankRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteBankRequestMultiError, or nil if none found.
+func (m *DeleteBankRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteBankRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	if len(errors) > 0 {
+		return DeleteBankRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteBankRequestMultiError is an error wrapping multiple validation errors
+// returned by DeleteBankRequest.ValidateAll() if the designated constraints
+// aren't met.
+type DeleteBankRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteBankRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteBankRequestMultiError) AllErrors() []error { return m }
+
+// DeleteBankRequestValidationError is the validation error returned by
+// DeleteBankRequest.Validate if the designated constraints aren't met.
+type DeleteBankRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteBankRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteBankRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteBankRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteBankRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteBankRequestValidationError) ErrorName() string {
+	return "DeleteBankRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteBankRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteBankRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteBankRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteBankRequestValidationError{}
+
+// Validate checks the field values on DeleteBankResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeleteBankResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeleteBankResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeleteBankResponseMultiError, or nil if none found.
+func (m *DeleteBankResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteBankResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return DeleteBankResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteBankResponseMultiError is an error wrapping multiple validation errors
+// returned by DeleteBankResponse.ValidateAll() if the designated constraints
+// aren't met.
+type DeleteBankResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteBankResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteBankResponseMultiError) AllErrors() []error { return m }
+
+// DeleteBankResponseValidationError is the validation error returned by
+// DeleteBankResponse.Validate if the designated constraints aren't met.
+type DeleteBankResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteBankResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteBankResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteBankResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteBankResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteBankResponseValidationError) ErrorName() string {
+	return "DeleteBankResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteBankResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteBankResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteBankResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteBankResponseValidationError{}
+
 // Validate checks the field values on GetPossibleBanksRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.

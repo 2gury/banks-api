@@ -9,6 +9,7 @@ import (
 type BanksService interface {
 	GetBanks(ctx context.Context, filters *model.BankFilters) ([]*model.Bank, error)
 	UpdateBank(ctx context.Context, bank *model.Bank) error
+	DeleteBank(ctx context.Context, id int64) error
 	GetPossibleBanks(_ context.Context) (*model.OffersResponse, error)
 	RequestBankInformation(ctx context.Context, externalID int64) (*model.Bank, error)
 

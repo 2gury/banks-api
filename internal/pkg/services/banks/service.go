@@ -15,6 +15,7 @@ var (
 type BanksRepository interface {
 	GetBanks(ctx context.Context, filters *model.BankFilters) ([]schema.Bank, error)
 	UpdateBank(ctx context.Context, bank *model.Bank) (int64, error)
+	DeleteBank(ctx context.Context, id int64) error
 
 	GetTranslationByText(ctx context.Context, language, text string) (*schema.Translation, error)
 	CreateTranslation(ctx context.Context, translation *model.Translation) (int64, error)
