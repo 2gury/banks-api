@@ -2,6 +2,7 @@
 
 Ручка получение перевода из гугла
 POST localhost:8080/v1/translate/request-translation-text
+
 Request:
 ```
 {
@@ -21,6 +22,7 @@ Response:
 
 Ручка получения перевода из базы
 POST localhost:8080/v1/translate/get-translation-text
+
 Request:
 ```
 {
@@ -45,6 +47,7 @@ Response:
 
 Ручка создания нового перевода
 POST localhost:8080/v1/translate/create
+
 Request:
 ```
 {
@@ -74,6 +77,7 @@ Response:
 
 Ручка изменения текущего перевода
 POST localhost:8080/v1/translate/create
+
 Request:
 ```
 {
@@ -104,6 +108,7 @@ Response:
 
 Ручка получения переводов
 POST localhost:8080/v1/translate/get-list
+
 Request:
 ```
 {}
@@ -156,6 +161,7 @@ Response:
 
 Ручка получения списка банков
 localhost:8080/v1/banks/get
+
 Request:
 ```
 {
@@ -276,6 +282,7 @@ Response:
 
 Ручка создание нового банка
 POST localhost:8080/v1/banks/update
+
 Request:
 ```
 {
@@ -325,6 +332,7 @@ Response:
 
 Ручка изменения существующего банка
 POST localhost:8080/v1/banks/update
+
 Request:
 ```
 {
@@ -373,8 +381,27 @@ Response:
 
 ---
 
+Ручка удаления банка по id
+POST localhost:8080/v1/banks/delete
+
+Request:
+```
+{
+    "id": 23
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+
 Ручка получения возможных банковский предложений
 POST localhost:8080/v1/banks/get-possible
+
 Request:
 ```
 {}
@@ -404,6 +431,7 @@ Response:
 
 Ручка запроса инфы по банку (тяжелая ручка)
 POST localhost:8080/v1/banks/request-bank-information
+
 Request:
 ```
 {
@@ -442,7 +470,105 @@ Response:
     }
 }
 ```
+---
 
+Ручка получения списка отзывов
+POST localhost:8080/v1/reviews/get-list
 
+Request:
+```
+{}
+```
+
+Response:
+```
+{
+    "reviews": [
+        {
+            "id": "1",
+            "content": "Понравился процесс оформления кредита",
+            "is_approved": false,
+            "user_email": "test@mail.ru",
+            "user_phone": "+893455474543",
+            "rating": "4",
+            "bank_id": "12",
+            "user_name": "Бауржан",
+            "bank": "JetCarz KZ - CPS",
+            "date": "2024-10-22T16:13:33.676555Z"
+        },
+        {
+            "id": "12",
+            "content": "Все понравилось",
+            "is_approved": true,
+            "user_email": "testing@mail.ru",
+            "user_phone": "+892325474543",
+            "rating": "1",
+            "bank_id": "23",
+            "user_name": "Бауржан",
+            "bank": "JetCarz KZ - CPS",
+            "date": "2024-10-22T16:13:33.676555Z"
+        }
+    ]
+}
+```
+
+---
+
+Ручка создания отзыва
+POST localhost:8080/v1/reviews/create
+
+Request:
+```
+{
+    "content": "Все понравилось",
+    "user_email": "testing@mail.ru",
+    "user_phone": "+892325474543",
+    "rating": "1",
+    "bank_id": "23",
+    "user_name": "Бауржан"
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+Ручка аппрува/деклайна отзыва
+POST localhost:8080/v1/reviews/update
+
+Request:
+```
+{
+    "id": "12",
+    "is_approved": true
+}
+```
+
+Response:
+```
+{}
+```
+
+---
+
+Ручка включения/выключения автомодерации
+POST localhost:8080/v1/automoderation/update
+
+Request:
+```
+{
+    "automoderation_enable": true
+}
+```
+
+Response:
+```
+{}
+```
+
+---
 
 
